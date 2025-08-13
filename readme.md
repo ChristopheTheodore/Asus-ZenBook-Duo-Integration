@@ -3,28 +3,26 @@
 
 ## Table des matières
 
-1. Pour les utilisateurs
-	- Fonctionnalités
-	- Prérequis
-	- Installation
-	- Configuration
+###1. Pour les utilisateurs
+**	- Fonctionnalités
+**	- Prérequis
+**	- Installation
+**	- Configuration
 
-2. Pour les développeurs
-	- Structure du code
-	- Contributions
-	- Licence
-	- Variable et gsettings
+###2. Pour les développeurs
+**	- Structure du code
+**	- Contributions
+**	- Licence
+**	- Variable et gsettings
 
-############################################
-### 		Pour les utilisateurs		 ###
-############################################
 
-![Sample Image](./ScreenShots/showRoom1.png)
-![Sample Image](./ScreenShots/showRoom2.png)
-![Sample Image](./ScreenShots/showRoom3.png)
+### 		Pour les utilisateurs
 
-### Fonctionnalités
-	¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+
+![Sample Image](./ScreenShots/showRoom2.png) ![Sample Image](./ScreenShots/showRoom3.png)
+
+** Fonctionnalités
+
 Cette extension permet de contrôler l'écran secondaire (ScreenPad) des ordinateurs portables Asus ZenBook Duo sous GNOME :
 	Le réglage de la luminosité du ScreenPad se controle en fonction du mode choisi:
 		- Linked ( Lié ) 	: Synchronisé avec l'écran principal.
@@ -35,8 +33,8 @@ Cette extension permet de contrôler l'écran secondaire (ScreenPad) des ordinat
 	Les fonds d'écran sont peuvent s'adapter à la demande.
 
 
-### Prérequis
-	¯¯¯¯¯¯¯¯¯
+** Prérequis
+
 Matériel:
 	Possèder un ordinateur asus ZenBook Duo
 		Il est probable que cette extension puisse ètre adaptée à d'autre type d'ordinateur.
@@ -54,8 +52,8 @@ Permissions:
 		/sys/class/backlight/asus_screenpad/bl_power 	( pour l'allumage et l'extinction).
 
 
-### Installation
-	¯¯¯¯¯¯¯¯¯¯¯¯
+** Installation
+
 L'installation de l'extension Asus ZenBook Duo Intégration pour gnome, se fait de manière standard ,en téléchargeant et activant l'extension.
 	NOTEZ QUE pour l’accès aux fichiers système, un fichier dev/rules doit être ajouté manuellement.
 
@@ -74,8 +72,8 @@ L'installation de l'extension Asus ZenBook Duo Intégration pour gnome, se fait 
 		Redémarrez La cession où tout simplement les règles udev : bash	[sudo udevadm control --reload-rules ]
 
 
-### Configuration
-	¯¯¯¯¯¯¯¯¯¯¯¯¯
+** Configuration
+
 	Accédez aux paramètres à l'aide de l'application `Extensions` ou avec la commande : bash [ gnome-extensions prefs zenbookDuoIntegration@christophe.extension ]
 
 		Active les slider du screenpad				:	Active ou désactive le slider,
@@ -89,28 +87,28 @@ L'installation de l'extension Asus ZenBook Duo Intégration pour gnome, se fait 
 															- à l'allumage ou l'extinction du screenpad.
 		Background Image On (Off)					:	Fichier Image des backgrounds
 
-
+![Sample Image](./ScreenShots/showRoom1.png)
 
 ### English Version:
 
 # GNOME Extension for Asus ZenBook Duo
 
 ## Table of Contents
-1. For Users
-   - Features
-   - Requirements
-   - Installation
-   - Configuration
-2. [For Developers
-   - Code Structure
-   - Contributing
-   - License
-   - Settings
+###1. For Users
+**   - Features
+**   - Requirements
+**   - Installation
+**   - Configuration
+###2. For Developers
+**   - Code Structure
+**   - Contributing
+**   - License
+**   - Settings
 
-## For Users
+### For Users
 
-### Features
-    ¯¯¯¯¯¯¯¯
+** Features
+
 Control the secondary display (ScreenPad) on Asus ZenBook Duo laptops with GNOME:
 
 Brightness Modes:
@@ -121,8 +119,8 @@ Brightness Modes:
 
     - Wallpapers: Automatic adaptation based on ScreenPad state
 
-### Requirements
-    ¯¯¯¯¯¯¯¯¯¯¯¯
+Requirements
+
 Hardware:
     Asus ZenBook Duo (ScreenPad models)
 
@@ -137,8 +135,8 @@ Permissions:
         /sys/class/backlight/asus_screenpad/brightness
         /sys/class/backlight/asus_screenpad/bl_power
 
-### Installation
-    ¯¯¯¯¯¯¯¯¯¯¯¯
+** Installation
+
     Install extension:
         Via GNOME Extensions (https://extensions.gnome.org/)
         via command line:
@@ -154,8 +152,8 @@ Permissions:
     Then restart or reload rules reload:
         bash: [sudo udevadm control --reload-rules]
 
-### Configuration
-    ¯¯¯¯¯¯¯¯¯¯¯¯¯
+** Configuration
+
 Access preferences:
     via extensions application (https://extensions.gnome.org/)
     or command line bash : [gnome-extensions prefs zenbookDuoIntegration@christophe.extension]
@@ -175,13 +173,13 @@ Available options:
 
 
 
-############################################
-### 		Pour les Développeurs		 ###
-############################################
+
+### 		Pour les Développeurs
 
 
-### Structure
-	¯¯¯¯¯¯¯¯¯
+
+## Structure
+
 L'extension suit une structure standard gnome:
 
 ├── extension.js 								# Point d'entrée principal de l'extension
@@ -210,8 +208,8 @@ L'extension suit une structure standard gnome:
 	 └── gschemas.compiled 						# Schema compilé du gsetting
 
 
-### Contributions
-	¯¯¯¯¯¯¯¯¯¯¯¯¯
+**Contributions
+
 Les contributions sont les bienvenues ! Pour contribuer :
 	Forkez le dépôt
 	Créez une branche (git checkout -b feature/ma-fonctionnalite)
@@ -220,8 +218,8 @@ Les contributions sont les bienvenues ! Pour contribuer :
 	Créez une Pull Request
 
 
-### Licence
-	¯¯¯¯¯¯¯
+** Licence
+
 
 GPL-2.0 - Voir la licence complète
 		https://www.gnu.org/licenses/old-licenses/gpl-2.0.fr.html
@@ -229,7 +227,7 @@ GPL-2.0 - Voir la licence complète
 
 
 ### Variable et autre settings :
-	¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+
 
 Généralité
 		// --------------------------------------------------------------------------------------------------------------------- //
