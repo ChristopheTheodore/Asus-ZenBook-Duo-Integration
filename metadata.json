@@ -4,7 +4,7 @@
   "gettext-domain": "asuszenbookduointegration",
   "uuid": "asuszenbookduointegration@ChristopheTheodore.extension",
   "shell-version": ["45", "46", "47", "48"],
-  "url": "à définir plu tard, quand j'aurai créé un compte git",
+  "url": "https://github.com/ChristopheTheodore/Asus-ZenBook-Duo-Integration.git",
   "version": 1,
   "settings-schema": "org.gnome.shell.asuszenbookduointegration",
   "license": "GPL-2.0"
