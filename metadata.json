@@ -1,0 +1,11 @@
+{
+  "name": "Asus-ZenBook-Duo-Integration",
+  "description": "Intègre la gestion de l'écran secondaire de l'Asus ZenBook Duo dans GNOME Shell pour une expérience fluide.",
+  "gettext-domain": "asuszenbookduointegration",
+  "uuid": "asuszenbookduointegration@ChristopheTheodore.extension",
+  "shell-version": ["45", "46", "47", "48"],
+  "url": "à définir plu tard, quand j'aurai créé un compte git",
+  "version": 1,
+  "settings-schema": "org.gnome.shell.asuszenbookduointegration",
+  "license": "GPL-2.0"
+}

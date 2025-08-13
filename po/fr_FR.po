@@ -1,0 +1,272 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-12 18:41+0400\n"
+"PO-Revision-Date: 2025-08-12 18:42+0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#: prefs.js:66
+msgid "Screenpad"
+msgstr "Screenpad"
+
+#: prefs.js:81
+msgid "Activer les fonctions du screenpad"
+msgstr "Activer les fonctions du screenpad"
+
+#: prefs.js:82
+msgid "Voir les Parametres"
+msgstr "Voir les Parametres"
+
+#: prefs.js:83
+msgid "Gérer les Background"
+msgstr "Gérer les Background"
+
+#: prefs.js:90
+msgid "Active les slider du screenpad"
+msgstr "Active les slider du screenpad"
+
+#: prefs.js:109
+msgid "Si éteind, Alume le screenpad au démarrage"
+msgstr "Si éteint, allume le screenpad au démarrage"
+
+#: prefs.js:137
+msgid "Activer les effets background"
+msgstr "Activer les effets background"
+
+#: prefs.js:138
+msgid "Les fonctions du screenpad doivent etre actives"
+msgstr "Les fonctions du screenpad doivent être actives"
+
+#: prefs.js:156
+msgid "Background Image On"
+msgstr ""
+
+#: prefs.js:165
+msgid "Background Image Off"
+msgstr ""
+
+#: prefs.js:238 prefs.js:251
+msgid "Minimum Requis"
+msgstr "Minimum Requis"
+
+#: prefs.js:258
+msgid "Lisez le fichier readme pour plus d'information"
+msgstr "Lisez le fichier readme pour plus d'information"
+
+#: prefs.js:285
+msgid "Cette extension nécessite :"
+msgstr "Cette extension nécessite :"
+
+#: prefs.js:286
+msgid "Un noyau Linux ≥ 6.5"
+msgstr "Un noyau Linux ≥ 6.5"
+
+#: prefs.js:287
+msgid " GNOME Shell ≥ 45"
+msgstr " GNOME Shell ≥ 45"
+
+#: prefs.js:288
+msgid "Vérifiez votre version avec :"
+msgstr "Vérifiez votre version avec :"
+
+#: prefs.js:289
+msgid "pour le noyau"
+msgstr "pour le noyau"
+
+#: prefs.js:290
+msgid "pour GNOME"
+msgstr "pour GNOME"
+
+#: prefs.js:301
+msgid "Cette extension à besoin d'un accès en lecture et écriture à :"
+msgstr "Cette extension à besoin d'un accès en lecture et écriture à :"
+
+#: prefs.js:304
+msgid "Créez un fichier"
+msgstr "Créez un fichier"
+
+#: prefs.js:304
+msgid "avec ce contenu :"
+msgstr "avec ce contenu :"
+
+#: prefs.js:310
+msgid "Puis redémarrer la cession ou rechargez les règles avec :"
+msgstr "Puis redémarrer la cession ou rechargez les règles avec :"
+
+#: prefs.js:323
+msgid "À propos"
+msgstr "À propos"
+
+#: prefs.js:355
+msgid "Intégration des fonctions Asus au bureau Gnome"
+msgstr "Intégration des fonctions Asus au bureau Gnome"
+
+#: prefs.js:355
+msgid "modele:"
+msgstr "modèle:"
+
+#: prefs.js:378
+msgid "Auteur"
+msgstr "Auteur"
+
+#: prefs.js:400
+msgid "Ce logiciel est fourni sans AUCUNE GARANTIE."
+msgstr "Ce logiciel est fourni sans AUCUNE GARANTIE."
+
+#: prefs.js:401
+#, javascript-format
+msgid "Voir la %sLicence Publique Générale GNU%s pour plus de détails."
+msgstr "Voir la %sLicence Publique Générale GNU%s pour plus de détails."
+
+#: prefs.js:425
+msgid "Code écrit par"
+msgstr "Code écrit par"
+
+#: prefs.js:426
+msgid "Avec l'aide de la communauté."
+msgstr "Avec l'aide de la communauté."
+
+#: prefs.js:427
+msgid ""
+"Grand merci au développeurs, qui sans le savoir, m'ont permis d'obtenir ce "
+"résultat."
+msgstr ""
+"Grand merci au développeurs, qui sans le savoir, m'ont permis d'obtenir ce "
+"résultat."
+
+#: prefs.js:436
+msgid "Une première version d'asus intégration avait été écrite par"
+msgstr "Une première version d'asus intégration avait été écrite par"
+
+#: prefs.js:436
+msgid "et"
+msgstr "et"
+
+#: prefs.js:438
+msgid ""
+"Je me suis inspiré de l'idée pour créer cette extension, je remercie les "
+"auteurs."
+msgstr ""
+"Je me suis inspiré de l'idée pour créer cette extension, je remercie les "
+"auteurs."
+
+#: prefs.js:447
+msgid "Logiciel libre sous licence GPL-2.0+"
+msgstr "Logiciel libre sous licence GPL-2.0+"
+
+#: prefs.js:448
+msgid "Vous êtes libre de:"
+msgstr "Vous êtes libre de:"
+
+#: prefs.js:449
+msgid "Utiliser, étudier, partager ce logiciel"
+msgstr "Utiliser, étudier, partager ce logiciel"
+
+#: prefs.js:450
+msgid "Le modifier selon vos besoins"
+msgstr "Le modifier selon vos besoins"
+
+#: prefs.js:451
+msgid "Redistribuer vos modifications"
+msgstr "Redistribuer vos modifications"
+
+#: extension.js:137 extension.js:148 extension.js:159
+msgid "Désactivation de ZenBook Extension"
+msgstr "Désactivation de ZenBook Extension"
+
+#: extension.js:138
+msgid "Le panneau de contrôle principal n’est pas accessible."
+msgstr "Le panneau de contrôle principal n’est pas accessible."
+
+#: extension.js:149
+msgid ""
+"Un fichier /sys/class/backlight/asus_screenpad/* n’a pas été détecté. Un "
+"noyau supérieur à 6.5 est requis."
+msgstr ""
+"Un fichier /sys/class/backlight/asus_screenpad/* n’a pas été détecté. Un "
+"noyau supérieur à 6.5 est requis."
+
+#: extension.js:160
+msgid ""
+"Un fichier /sys/class/backlight/asus_screenpad/* est en lecture seule. "
+"Consultez les préférences pour configurer /etc/udev/rules.d/99-asus.rules."
+msgstr ""
+"Un fichier /sys/class/backlight/asus_screenpad/* est en lecture seule. "
+"Consultez les préférences pour configurer /etc/udev/rules.d/99-asus.rules."
+
+#: extension.js:424
+msgid "Préférences"
+msgstr "Préférences"
+
+#: ClassObjects/screenpadobjects.js:330 ClassObjects/screenpadobjects.js:345
+#: ClassObjects/screenpadobjects.js:516 ClassObjects/screenpadobjects.js:706
+msgid "Erreur dans Screenpad Exension"
+msgstr "Erreur dans Screenpad Exension"
+
+#: ClassObjects/screenpadobjects.js:516
+msgid ""
+"Un des fichiers /sys/class/backlight/asus_screenpad/* n'est pas accessible"
+msgstr ""
+"Un des fichiers /sys/class/backlight/asus_screenpad/* n'est pas accessible"
+
+#: ClassObjects/quicksettingobjects.js:36
+msgid "Icon Accessible Name"
+msgstr ""
+
+#: ClassObjects/quicksettingobjects.js:48
+msgid "ScreenPad-Slider"
+msgstr ""
+
+#: ClassObjects/quicksettingobjects.js:70
+msgid "Linked"
+msgstr ""
+
+#: ClassObjects/quicksettingobjects.js:71
+msgid "ScreenPad linked"
+msgstr ""
+
+#: ClassObjects/quicksettingobjects.js:87
+msgid "ScreenPad"
+msgstr ""
+
+#: ClassObjects/quicksettingobjects.js:88
+msgid "ScreenPad Status"
+msgstr ""
+
+#: ClassObjects/quicksettingobjects.js:99
+msgid "ScreenPad Lie"
+msgstr "ScreenPad Lié"
+
+#: ClassObjects/quicksettingobjects.js:100
+msgid "ScreenPad Libre"
+msgstr "Screenpad Libre"
+
+#: ClassObjects/quicksettingobjects.js:101
+msgid "Full"
+msgstr ""
+
+#: ClassObjects/quicksettingobjects.js:102
+msgid "ScreenPad éteint"
+msgstr "Screenpad éteind"
+
+#~ msgid "modele: zenBook Duo"
+#~ msgstr "modele: zenBook Duo"
+
+#~ msgid "Modules Externes"
+#~ msgstr "Modules Externes"
+
+#~ msgid "This program comes with absolutely no warranty."
+#~ msgstr "Ce programme vient sans garantie."
