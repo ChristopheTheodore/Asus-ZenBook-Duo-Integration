@@ -5,7 +5,7 @@
   "uuid": "asuszenbookduointegration@ChristopheTheodore.extension",
   "shell-version": ["45", "46", "47", "48"],
   "url": "https://github.com/ChristopheTheodore/Asus-ZenBook-Duo-Integration.git",
-  "version": 1,
-  "settings-schema": "org.gnome.shell.asuszenbookduointegration",
+  "version": 2,
+  "settings-schema": "org.gnome.shell.zen-book-duo-integration",
   "license": "GPL-2.0"
 }

@@ -1,73 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <schemalist gettext-domain="zenbookDuoIntegration@christophe.extension">
-	<schema path="/org/gnome/shell/extensions/zen-book-duo-integration/" id="org.gnome.shell.extensions.zen-book-duo-integration">
+    <schema path="/org/gnome/shell/extensions/zen-book-duo-integration/" id="org.gnome.shell.extensions.zen-book-duo-integration">
 
-		<key name="screenpad-extension-activated" type="b">
-			<description>Active les slider du screenpad</description>
-			<default>true</default>
-		</key>
+        <key name="screenpad-extension-activated" type="b">
+            <description>Active les slider du screenpad</description>
+            <default>true</default>
+        </key>
 
-		<key name="screenpad-auto-adjust" type="b">
-			<description>Si éteind, alume le screen pad au démarrage</description>
-			<default>true</default>
-		</key>
-		
-		<key name="screenpad-brightness" type="i">
-			<summary>Luminosité screenPad</summary>
-			<description>Valeur de Luminosité du screenPad en pourcentage (000 - 100)</description>
-			<range min="0" max="255"/>
-			<default>50</default>
-		</key>
+        <key name="screenpad-auto-adjust" type="b">
+            <description>Si éteind, alume le screen pad au démarrage</description>
+            <default>true</default>
+        </key>
 
-		<key name="main-brightness" type="i">
-			<summary>Luminosité écran</summary>
-			<description>Valeur de Luminosité de l'écran principale en pourcentage (000 - 100)</description>
-			<range min="0" max="100"/>
-			<default>50</default>
-		</key>
+        <key name="screenpad-brightness" type="i">
+            <summary>Luminosité screenPad</summary>
+            <description>Valeur de Luminosité du screenPad en pourcentage (000 - 100)</description>
+            <range min="0" max="255"/>
+            <default>50</default>
+        </key>
 
-		<key name="sys-class-led-status" type="s">
-			<summary>sys/class/led status</summary>
-			<description>Etat du fichier /sys/class/leds/asus::screenpad/brightness. 00 inéxistant, RO Lecture seule, RW Lecture et écriture</description>
-			 <default>'00'</default>
-		</key>
+        <key name="main-brightness" type="i">
+            <summary>Luminosité écran</summary>
+            <description>Valeur de Luminosité de l'écran principale en pourcentage (000 - 100)</description>
+            <range min="0" max="100"/>
+            <default>50</default>
+        </key>
 
-		<key name="screenpad-mode" type="s">
-			<summary>Screenpad mode</summary>
-			<description>Le ScreenPad peut être en mode: Lié : Linked, Libre : Free, Full : Full ou Off : Off.</description>
-			 <default>"Free"</default>
-		</key>
+        <key name="sys-class-led-status" type="s">
+            <summary>sys/class/led status</summary>
+            <description>Etat du fichier /sys/class/leds/asus::screenpad/brightness. 00 inéxistant, RO Lecture seule, RW Lecture et écriture</description>
+             <default>'00'</default>
+        </key>
 
-		<key name="screenpad-status" type="b">
-			<summary>Screenpad Status</summary>
-			<description>Le ScreenPad peut avoir le status: true : on ou false : off, (Back light power).</description>
-			 <default>true</default>
-		</key>
+        <key name="screenpad-mode" type="s">
+            <summary>Screenpad mode</summary>
+            <description>Le ScreenPad peut être en mode: Lié : Linked, Libre : Free, Full : Full ou Off : Off.</description>
+             <default>"Free"</default>
+        </key>
 
-		<key name="screenpad-last-mode" type="as">
-			<summary>Screenpad Last State</summary>
-			<description>Enregistre la valeur lorsque le screenpad passe à Off.</description>
-			 <default>["Linked","100"]</default>
-		</key>
+        <key name="screenpad-status" type="b">
+            <summary>Screenpad Status</summary>
+            <description>Le ScreenPad peut avoir le status: true : on ou false : off, (Back light power).</description>
+             <default>true</default>
+        </key>
 
-		<key name="background-activated" type="b">
-			<description>Prend en compte le BackGround.</description>
-			<default>false</default>
-		</key>
+        <key name="screenpad-last-mode" type="as">
+            <summary>Screenpad Last State</summary>
+            <description>Enregistre la valeur lorsque le screenpad passe à Off.</description>
+             <default>["Linked","100"]</default>
+        </key>
 
-		<key name="background-image-on" type="s">
-			<summary>Background image on</summary>
-			<description>Image du background, quand le screen pad est on.</description>
-			 <default>"/home/christophe/.local/share/backgrounds/Image-On.png"</default>
-		</key>
+        <key name="background-activated" type="b">
+            <description>Prend en compte le BackGround.</description>
+            <default>false</default>
+        </key>
 
-		<key name="background-image-off" type="s">
-			<summary>background image off</summary>
-			<description>Image du background, quand le screen pad est off.</description>
-			 <default>"/home/christophe/.local/share/backgrounds/Image-Off.png"</default>
-		</key>
+        <key name="background-image-on" type="s">
+            <summary>Background image on</summary>
+            <description>Image du background, quand le screen pad est on.</description>
+             <default>"/home/christophe/.local/share/backgrounds/Image-On.png"</default>
+        </key>
+
+        <key name="background-image-off" type="s">
+            <summary>background image off</summary>
+            <description>Image du background, quand le screen pad est off.</description>
+             <default>"/home/christophe/.local/share/backgrounds/Image-Off.png"</default>
+        </key>
 
 
-	</schema>
+    </schema>
 </schemalist>
