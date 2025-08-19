@@ -401,7 +401,7 @@ const zenBookDuoAbout = GObject.registerClass(class zenBookDuoAbout extends Adw.
         //    AboutTextPreferencesGroup
         const GarantieLabel = _("Ce logiciel est fourni sans AUCUNE GARANTIE.");
         const urlLabel =  _("Voir la %sLicence Publique Générale GNU%s pour plus de détails.")
-            format('<a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.fr.html">', '</a>');
+            .format('<a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.fr.html">', '</a>');
 
         const gnuSoftwareGroup = new Adw.PreferencesGroup();
         const gnuSofwareLabel = new Gtk.Label({

@@ -57,7 +57,8 @@ export default class ZenBookDuoIntegration extends Extension {
         // __________
         // Le setting
         this._settings = this.getSettings(GSettingsPaths.SETTINGS);
-        this._backgroundSetting = this.getSettings(GSettingsPaths.BACKGROUND);
+//        this._backgroundSetting = this.getSettings(GSettingsPaths.BACKGROUND);
+        this._backgroundSetting = new Gio.Settings( {schema_id: GSettingsPaths.BACKGROUND } );
 
         // _________________________
         // Declaration des Variables
@@ -78,22 +79,20 @@ export default class ZenBookDuoIntegration extends Extension {
         // et pour se simplifier la vie
         this.mainSlider = Main.panel.statusArea.quickSettings._brightness.quickSettingsItems[0];
 
-//-----------------------------------------------------------------------------
-//    Pour Fonctionner, cette extension a besoin d'un acces à :
-//        main.panel.statusArea.quickSettings._brightness...
-//        /sys/class/leds/asus::screenpad/brightnessKernel <6.5 non supporté
-//        /sys/class/backlight/asus_screenpad/brightnessKernel > 6.5
-//        /sys/class/backlight/asus_screenpad/bl_powerKernel > 6.5
-//    en Lecture ET écriture
-//        /etc/udev/rules.d/99-asus.rules authorise l'acces en écriture
-//    Vérifions cela, mais qu'une seule fois, au premier démarrage ! 
-//-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
+        //    Pour Fonctionner, cette extension a besoin d'un acces à :
+        //        main.panel.statusArea.quickSettings._brightness...
+        //        /sys/class/backlight/asus_screenpad/brightnessKernel > 6.5
+        //        /sys/class/backlight/asus_screenpad/bl_powerKernel > 6.5
+        //    en Lecture ET écriture
+        //        /etc/udev/rules.d/99-asus.rules authorise l'acces en écriture
+        //    Vérifions cela, mais qu'une seule fois, au premier démarrage ! 
+        //---------------------------------------------------------------------
 
         if (firstRun) {
 
-//-----------------------------------------------------------------------------
-//    on test main.panel.statusArea.quickSettings._brightness...
-//-----------------------------------------------------------------------------
+            // ________________________________
+            // on test main.panel.statusArea...
             try {
                 if (!Main.panel.statusArea.quickSettings._brightness?.quickSettingsItems?.[0]?.slider) {
                     mainSliderStatus = false;
@@ -102,16 +101,16 @@ export default class ZenBookDuoIntegration extends Extension {
                 mainSliderStatus = false;
             }
 
-//-----------------------------------------------------------------------------
-//    verification de :
-//        /sys/class/backlight/asus_screenpad/brightness
-//        /sys/class/backlight/asus_screenpad/bl_power
-//        main.panel.statusArea.quickSettings._brightness.quickSettingsItems.[0].slider
-//    NA->Not Applicable
-//    00->inexistant
-//    RO->readOnly
-//    RW->readWrite 
-//-----------------------------------------------------------------------------
+            //-----------------------------------------------------------------
+            //    verification de :
+            //        /sys/class/backlight/asus_screenpad/brightness
+            //        /sys/class/backlight/asus_screenpad/bl_power
+            //        main.panel.statusArea.quickSettings._brightness...
+            //    NA->Not Applicable
+            //    00->inexistant
+            //    RO->readOnly
+            //    RW->readWrite 
+            //-----------------------------------------------------------------
 
             if (mainSliderStatus) {
                 if (brightnessFilesStatus !== "RW") extensionStatus = brightnessFilesStatus;
@@ -120,10 +119,9 @@ export default class ZenBookDuoIntegration extends Extension {
             } else extensionStatus = "NA";
             this._settings.set_string('sys-class-led-status', extensionStatus);
 
-//-----------------------------------------------------------------------------
-//    On informe l'utilisateur si NOK
-//    et si OK, on initialise l'extension
-//-----------------------------------------------------------------------------
+            // _______________________________
+            // On informe l'utilisateur si NOK
+            // si OK, on initialise l'extension
             switch (extensionStatus) {
 
                 case "NA":
@@ -142,7 +140,7 @@ export default class ZenBookDuoIntegration extends Extension {
                     this._settings.set_boolean('screenpad-extension-activated', false);
                     this._showNotification (
                         _("Désactivation de ZenBook Extension"),
-                         _("Un fichier /sys/class/backlight/asus_screenpad/* n’a pas été détecté. Un noyau supérieur à 6.5 est requis."),
+                         _("Un fichier") + " /sys/class/backlight/asus_screenpad/* " + _("n’a pas été détecté. Un noyau supérieur à 6.5 est requis."),
                         "critical"
                     );
 
@@ -153,7 +151,7 @@ export default class ZenBookDuoIntegration extends Extension {
                     this._settings.set_boolean('screenpad-extension-activated', false);
                     this._showNotification (
                         _("Désactivation de ZenBook Extension"),
-                        _("Un fichier /sys/class/backlight/asus_screenpad/* est en lecture seule. Consultez les préférences pour configurer /etc/udev/rules.d/99-asus.rules."),
+                        _("Un fichier") + " /sys/class/backlight/asus_screenpad/* " + _("est en lecture seule. Consultez les préférences pour configurer /etc/udev/rules.d/99-asus.rules."),
                         "critical"
                     );
 
@@ -167,45 +165,51 @@ export default class ZenBookDuoIntegration extends Extension {
 
             }
 
-//-----------------------------------------------------------------------------
-//    firstRun passe à false,
-//    Les tests en lecture et ecriture de /sys/class/led...
-//    ne seront pas exécutés après un prochain enable().
-//-----------------------------------------------------------------------------
+            //-----------------------------------------------------------------
+            //    firstRun passe à false,
+            //    Les tests en lecture et ecriture de /sys/class/led...
+            //    ne seront pas exécutés après un prochain enable().
+            //-----------------------------------------------------------------
             firstRun = false;
+
         }
-//-----------------------------------------------------------------------------
-//    End of first run
-//-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
+        //    End of first run
+        //---------------------------------------------------------------------
 
-
-//-----------------------------------------------------------------------------
-//    Activation des class objects et des connexions 
-//    Seulement si sys-class-led-status est RW et screenpad-extension-activated true
-//-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
+        //    Activation des class objects et des connexions 
+        //    si sys-class-led est RW et screenpad-extension-activated true
+        //---------------------------------------------------------------------
 
         // _______________________
         // class _screenpadControl
-        if( this._settings.get_boolean('screenpad-extension-activated') && extensionStatus === "RW" ) {
+        if( this._settings.get_boolean('screenpad-extension-activated') && this._settings.get_string('sys-class-led-status') === "RW" ) {
+            //Main.notify('_screenpadControl start', 'Value : ' );
+
+            // ________________________________________
+            // Création de la class _screenpadControl
+            this._screenpadControl = new screenpadObjects.screenpadControl(this);
+
+            //-----------------------------------------------------------------
+            // ATTENTION :
+            //    _initScreenpadSetting est devenu asynchrone
+            //    enableScreenpadControl()
+            //    doit etre activé dans _initScreenpadSetting
+            //-----------------------------------------------------------------
 
             // _____________________
             // _initScreenpadSetting
             this._initScreenpadSetting(SysClassPaths.BRIGHTNESS,SysClassPaths.BL_POWER);
 
-            // ________________________________________
-            // Activation de la class _screenpadControl
-            this._screenpadControl = new screenpadObjects.screenpadControl(this);
-            this._screenpadControl.enableScreenpadControl();
-
             // ________________________________
             // Connexion du screenpad-extension-activated
             this._screenpadActivatedId = this._settings.connect ('changed::screenpad-extension-activated', () => {
                 if( this._settings.get_boolean('screenpad-extension-activated') && this._settings.get_string('sys-class-led-status') === "RW") {
-                    // _initScreenpadSetting
-                    this._initScreenpadSetting(SysClassPaths.BRIGHTNESS,SysClassPaths.BL_POWER);
                     // Activation de la class _screenpadControl
                     this._screenpadControl = new screenpadObjects.screenpadControl(this);
-                    this._screenpadControl.enableScreenpadControl();
+                    // _initScreenpadSetting
+                    this._initScreenpadSetting(SysClassPaths.BRIGHTNESS,SysClassPaths.BL_POWER);
                 } else {
                     // destruction des objects
                     this._screenpadControl?.disableScreenpadControl();
@@ -226,11 +230,12 @@ export default class ZenBookDuoIntegration extends Extension {
 
     disable() {
 
-//-----------------------------------------------------------------------------
-//    Remember
-//    Any objects or widgets created by an extension MUST be destroyed in disable().
-//    This is required for approval during review!
-//-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
+        //    Remember
+        //    Any objects or widgets created by an extension 
+        //        MUST be destroyed in disable().
+        //    This is required for approval during review!
+        //---------------------------------------------------------------------
 
         // ___________________________
         // Destructions des connexions
@@ -252,151 +257,176 @@ export default class ZenBookDuoIntegration extends Extension {
     }
 
 
-//-----------------------------------------------------------------------------
-//    Initialisation de la valeur du screen pad brightness
-// 
-//    ScreenPad linked 
-//        SysClassBrightnessValue = MainBrightnessValue
-// 
-//    ScreenPad Free
-//        ScreenPadBrightnessValue = SysClassBrightnessValue
-// 
-//    ScreenPad Off 
-//        Cas1 : SysClassBrightnessValue = 0: c'est vrai, si Auto On...
-//        Cas2 : SysClassBrightnessValue≠ 0: c'est faux 
-//            ScreenPadBrightnessValue = SysClassBrightnessValue
-//            ajuster les décorations ( bouton, slider, background + Free)
-// 
-//    ScreenPad Full 
-//        Cas1 : SysClassBrightnessValue = 235: c'est vrai, rien a faire
-//        Cas2 : SysClassBrightnessValue ≠ 235: c'est faux 
-//            ScreenPadBrightnessValue = SysClassBrightnessValue
-//            ajuster les décorations ( bouton, slider, background + Free)
-//-----------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
+    //    Initialisation de la valeur du screen pad brightness
+    // 
+    //    ScreenPad linked 
+    //        sysClassScreenPadBrightnessValue = MainBrightnessValue
+    // 
+    //    ScreenPad Free
+    //        ScreenPadBrightnessValue = sysClassScreenPadBrightnessValue
+    // 
+    //    ScreenPad Off 
+    //        Cas1 : sysClassScreenPadBrightnessValue = 0: c'est vrai, si Auto On...
+    //        Cas2 : sysClassScreenPadBrightnessValue≠ 0: c'est faux 
+    //            ScreenPadBrightnessValue = sysClassScreenPadBrightnessValue
+    //            ajuster les décorations ( bouton, slider, background + Free)
+    // 
+    //    ScreenPad Full 
+    //        Cas1 : sysClassScreenPadBrightnessValue = 235: c'est vrai, rien a faire
+    //        Cas2 : sysClassScreenPadBrightnessValue ≠ 235: c'est faux 
+    //            ScreenPadBrightnessValue = sysClassScreenPadBrightnessValue
+    //            ajuster les décorations ( bouton, slider, background + Free)
+    //
+    //    Cas particulier, au démarrage du system, l'écran est par defaut alllumé
+    //        si screen pad status ne match pas bl_power
+    //        le mode passe a Free et ajustement du background
+    //-------------------------------------------------------------------------
     _initScreenpadSetting(SysClassBrightnessFile,SysClassBLPowerFile) {
 
-//-----------------------------------------------------------------------------
-//    Rappel :
-//    main Brightness Value 
-//        Slider valeur comprise entre 000 et 001
-//        setting valeur en pourcentage entre 000 et 100
-//        sys/class/backlight valeur entre 000 et 255
-//    screenpad Brightness Value 
-//        Slider valeur comprise entre 000 et 001
-//        setting valeur en pourcentage entre 000 et 100
-//        sys/class/backlight valeur entre 000 et 235
-//-----------------------------------------------------------------------------
+        // Récupération de SysClassBrightnessFile de facon asynchrone
+        systemFileUtility.getSysClassFileValue(SysClassBrightnessFile, (_sysClassScreenPadBrightnessValue) => {
 
-        let screenpadAutoAdjustValue = this._settings.get_boolean('screenpad-auto-adjust');
-        let mainBrightnessValue = Math.round(this.mainSlider.slider.value*100);
-        let sysClassScreenPadValue = Math.round(systemFileUtility.getSysClassFileValue(SysClassBrightnessFile)/235*100);
-        let screenpadBrightnessValue = -1;
-        let screenpadMode = this._settings.get_string('screenpad-mode');
-        let functionResult = "kp";
+            // Puis récupération de bl_powerFile de facon asynchrone
+            systemFileUtility.getSysClassFileValue(SysClassBLPowerFile, (_sysClassScreenPadBLPowerValue) => {
 
-        // le screen pad est certainement allumé, dans le cas contraire, case "Off" l'éteindra!
-        this._settings.set_boolean('screenpad-status', true);
+                //-------------------------------------------------------------
+                //    Rappel :
+                //    main Brightness Value 
+                //        Slider valeur comprise entre 000 et 001
+                //        setting valeur en pourcentage entre 000 et 100
+                //        sys/class/backlight valeur entre 000 et 255
+                //    screenpad Brightness Value 
+                //        Slider valeur comprise entre 000 et 001
+                //        setting valeur en pourcentage entre 000 et 100
+                //        sys/class/backlight valeur entre 000 et 235
+                //-------------------------------------------------------------
 
+                // Initialisation des variables
+                let mainBrightnessValue = Math.round(this.mainSlider.slider.value*100);
+                let sysClassScreenPadBrightnessValue = parseInt(_sysClassScreenPadBrightnessValue);
+                let sysClassScreenPadBLPowerValue = parseInt(_sysClassScreenPadBLPowerValue);
+                let screenpadMode = this._settings.get_string('screenpad-mode');
+                let screenpadAutoAdjustValue = this._settings.get_boolean('screenpad-auto-adjust');
+                let functionResult = "ko";
 
-//-----------------------------------------------------------------------------
-//    En Fonction de screenpad-mode
-//-----------------------------------------------------------------------------
+                let newScreenPadBrightnessValue = -1;
+                //Main.notify('init screenpad', 'sysClassScreenPadBrightnessValue : ' + sysClassScreenPadBrightnessValue);
 
-        switch (screenpadMode) {
+                // le screen pad est certainement allumé, dans le cas contraire, case "Off" l'éteindra!
+                this._settings.set_boolean('screenpad-status', true);
 
-            case "Linked":
-            // SysClassBrightnessValue = MainBrightnessValue
-                screenpadBrightnessValue = mainBrightnessValue;
+                // ___________________________________
+                // En Fonction de screenpad-mode
+                switch (screenpadMode) {
 
-            break;
+                    case "Linked":
+                        newScreenPadBrightnessValue = mainBrightnessValue;
+                    break;
 
-            case "Free":
-            // ScreenPadBrightnessValue = SysClassBrightnessValue
-                screenpadBrightnessValue = sysClassScreenPadValue
+                    case "Free":
+                        newScreenPadBrightnessValue = sysClassScreenPadBrightnessValue
 
-            break;
+                    break;
 
-            case "Off":
-                // Cas 1 : l'écran est il vraiment Off ?
-                if (sysClassScreenPadValue === 0) {
-                this._settings.set_boolean('screenpad-status', false);
+                        // Rappelle :
+                        //    BLPower 1 = off
+                        //    BLPower 0 = on
+                    case "Off":
+                        // Cas 1 : l'écran est il vraiment Off ?
+                        if (sysClassScreenPadBLPowerValue === 1) {
+                        this._settings.set_boolean('screenpad-status', false);
+                        newScreenPadBrightnessValue = 0;
 
-                    // La fonction autoAjustement est elle true?
-                    if(screenpadAutoAdjustValue) {
-                        // Auto allumage de l'écran, mise en mode Free
-                        // BackLight a 0 pour on
-                        functionResult = systemFileUtility.setSysClassFileValue(SysClassBLPowerFile,"0");
-                        if (functionResult === "ok") this._settings.set_boolean('screenpad-status', true);
-                        screenpadBrightnessValue = mainBrightnessValue;
-                        this._settings.set_string('screenpad-mode', "Free");
+                            // La fonction autoAjustement est elle true?
+                            if(screenpadAutoAdjustValue) {
+                                // Auto allumage de l'écran, mise en mode Free
+                                // BackLight a 0 pour on
+                                functionResult = systemFileUtility.setSysClassFileValue(SysClassBLPowerFile,"0");
+                                if (functionResult === "ok") {
+                                    this._settings.set_boolean('screenpad-status', true);
+                                    newScreenPadBrightnessValue = mainBrightnessValue;
+                                    sysClassScreenPadBLPowerValue = 0;
+                                    this._settings.set_string('screenpad-mode', "Free");
+                                }
+                                // Mise a jour de la décoration background
+                                if (this._settings.get_boolean('background-activated'))
+                                    systemFileUtility.ChangeBackgroundImage(this._settings, this._backgroundSetting, "On");
 
-                        // Mise a jour de la décoration background
-                        if (this._settings.get_boolean('background-activated'))
-                            systemFileUtility.ChangeBackgroundImage(this._settings, this._backgroundSetting, "On");
+                            }
+                        // Cas 2 : l'écran n'était pas Off
+                        } else {
+                            // L'ecran n'était pas éteint, mise a jour de l'extension
+                            // Certainement un redémarrage systeme
+                            newScreenPadBrightnessValue = sysClassScreenPadBrightnessValue
+                            this._settings.set_string('screenpad-mode', "Free");
+                            // Mise a jour de la décoration background
+                            if (this._settings.get_boolean('background-activated'))
+                                systemFileUtility.ChangeBackgroundImage(this._settings, this._backgroundSetting, "On");
+                        }
 
-                    }
-                // Cas 2 : l'écran n'était pas Off
-                } else {
-                    // L'ecran n'était pas éteint, mise a jour de l'extension
-                    screenpadBrightnessValue = sysClassScreenPadValue
-                    this._settings.set_string('screenpad-mode', "Free");
+                    break;
+
+                    case "Full":
+                        // Cas 1 : l'écran est il vraiment Full ?
+                        if (sysClassScreenPadBrightnessValue > 234) {
+                        newScreenPadBrightnessValue = 100;
+                            // La fonction autoAjustement est elle true?
+                            if(screenpadAutoAdjustValue) {
+                                // Auto ajustement de l'écran, mise en mode Free
+                                newScreenPadBrightnessValue = mainBrightnessValue;
+                                this._settings.set_string('screenpad-mode', "Free");
+                            }
+                        // Cas 2 : l'écran n'était pas Full
+                        } else {
+                            // L'ecran n'était pas Full, mise a jou de l'extension
+                            newScreenPadBrightnessValue = sysClassScreenPadBrightnessValue
+                            this._settings.set_string('screenpad-mode', "Free");
+                        }
+
+                    break;
+
                 }
 
-            break;
+                // ___________________________________
+                // Mise a jour de screenpad-brightness
+                // puis écriture dans le /sys/.../brightness
+                this._settings.set_int('screenpad-brightness', newScreenPadBrightnessValue);
+                functionResult = systemFileUtility.setSysClassFileValue(SysClassBrightnessFile, Math.round(newScreenPadBrightnessValue*235/100));
 
-            case "Full":
-                // Cas 1 : l'écran est il vraiment Full ?
-                if (sysClassScreenPadValue > 234) {
-                    // La fonction autoAjustement est elle true?
-                    if(screenpadAutoAdjustValue) {
-                        // Auto ajustement de l'écran, mise en mode Free
-                        screenpadBrightnessValue = mainBrightnessValue;
-                        this._settings.set_string('screenpad-mode', "Free");
-                    }
-                // Cas 2 : l'écran n'était pas Full
-                } else {
-                    // L'ecran n'était pas éteint, mise a jou de l'extension
-                    screenpadBrightnessValue = sysClassScreenPadValue
-                    this._settings.set_string('screenpad-mode', "Free");
-                }
+                // puis, sauvegarde de l'état actuelle
+                // sauf si off
+                if ( this._settings.get_string('screenpad-mode') != "Off")
+                    this._settings.set_strv ('screenpad-last-mode',
+                        [this._settings.get_string('screenpad-mode'),this._settings.get_int('screenpad-brightness').toString() ]
+                );
 
-            break;
+                // __________________________________
+                // Petit coup debalai avant de partir
+                screenpadAutoAdjustValue = null;
+                sysClassScreenPadBrightnessValue = null;
+                mainBrightnessValue = null;
+                newScreenPadBrightnessValue = null;
+                screenpadMode = null;
+                functionResult = null;
 
-        }
-
-        // ___________________________________
-        // Mise a jour de screenpad-brightness
-        // puis écriture dans le /sys/.../brightness
-        this._settings.set_int('screenpad-brightness', screenpadBrightnessValue);
-        functionResult = systemFileUtility.setSysClassFileValue(SysClassBrightnessFile, Math.round(screenpadBrightnessValue*235/100));
-
-        // puis, sauvegarde de l'état actuelle
-        this._settings.set_strv ('screenpad-last-mode',
-            [this._settings.get_string('screenpad-mode'),this._settings.get_int('screenpad-brightness').toString() ]
-        );
-
-        // __________________________________
-        // Petit coup debalai avant de partir
-        screenpadAutoAdjustValue = null;
-        sysClassScreenPadValue = null;
-        mainBrightnessValue = null;
-        screenpadBrightnessValue = null;
-        screenpadMode = null;
-        functionResult = null;
-    }
+                this._screenpadControl.enableScreenpadControl();
+            });
+        });
+   }
 
 
-//-----------------------------------------------------------------------------
-//    Ici, je commence à traiter les fonctions
-//-----------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
+    //    Ici, je commence à traiter les fonctions
+    //-------------------------------------------------------------------------
+    
+    
+    //-------------------------------------------------------------------------
+    //     Merci a Voluble Extension pour l'inspiration
+    //-------------------------------------------------------------------------
 
-
-//-----------------------------------------------------------------------------
-//     Merci a Voluble Extension pour l'inspiration
-//-----------------------------------------------------------------------------
-
-//    __________________________
-//    Fonction _showNotification
+    // __________________________
+    // Fonction _showNotification
     _showNotification(title, message, urgency = "normal") {
 
         const systemSource = MessageTray.getSystemSource();

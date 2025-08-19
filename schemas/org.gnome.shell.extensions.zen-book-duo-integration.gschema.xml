@@ -16,7 +16,7 @@
         <key name="screenpad-brightness" type="i">
             <summary>Luminosité screenPad</summary>
             <description>Valeur de Luminosité du screenPad en pourcentage (000 - 100)</description>
-            <range min="0" max="255"/>
+            <range min="0" max="100"/>
             <default>50</default>
         </key>
 
@@ -29,7 +29,7 @@
 
         <key name="sys-class-led-status" type="s">
             <summary>sys/class/led status</summary>
-            <description>Etat du fichier /sys/class/leds/asus::screenpad/brightness. 00 inéxistant, RO Lecture seule, RW Lecture et écriture</description>
+            <description>Etat du fichier /sys/class/backlight/asus_screenpad/brightness. 00 inéxistant, RO Lecture seule, RW Lecture et écriture</description>
              <default>'00'</default>
         </key>
 
@@ -47,7 +47,7 @@
 
         <key name="screenpad-last-mode" type="as">
             <summary>Screenpad Last State</summary>
-            <description>Enregistre la valeur lorsque le screenpad passe à Off.</description>
+            <description>Enregistre la valeur lorsque le screenpad passe à Off ou Full.</description>
              <default>["Linked","100"]</default>
         </key>
 

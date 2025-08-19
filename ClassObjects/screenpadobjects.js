@@ -54,7 +54,8 @@ export class screenpadControl {
         // _________
         // Le setting
         this._settings = this._extensionObjects.getSettings(GSettingsPaths.SETTINGS);
-        this._backgroundSetting = this._extensionObjects.getSettings(GSettingsPaths.BACKGROUND);
+//        this._backgroundSetting = this._extensionObjects.getSettings(GSettingsPaths.BACKGROUND);
+        this._backgroundSetting = new Gio.Settings( {schema_id: GSettingsPaths.BACKGROUND } );
 
         // __________________________
         // Déclaration des constantes
@@ -97,16 +98,17 @@ export class screenpadControl {
         this.mainSlider = Main.panel.statusArea.quickSettings._brightness.quickSettingsItems[0];
 
 
-//-----------------------------------------------------------------------------
-//    Création du GIO File pour:
-//        /sys/class/backlight/asus_screenpad/brightness.
-//.       Noter que bl_power est géré dans ClassFunctions/functions.js    .
-// 
-//    Le Stream brightness sera ouvert en "drag-begin" et fermé en "drag-end".
-//         et Seulement si sys-class-led-status est "RW".
-//         en fait, la class screenpadcontrol n'est pas initiée si RW n'es pas respectée
-//         Je supprimerai les tests RW dans cette class! dans les versions suivantes
-//-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
+        //    Création du GIO File pour:
+        //        /sys/class/backlight/asus_screenpad/brightness.
+        //.       Noter que bl_power est géré dans ClassFunctions/functions.js
+        // 
+        //    Le Stream brightness sera ouvert en:
+        //       "drag-begin" et fermé en "drag-end".
+        //       et Seulement si sys-class-led-status est "RW".
+        //       Note : la class screenpadcontrol n'est pas initiée si RW n'es pas respectée
+        //      Je supprimerai les tests RW dans cette class! dans les versions suivantes
+        //-----------------------------------------------------------------------------
 
         if( this.SYSCLASSSTATUS == "RW" ) {
             this._SysClassBrightnessGFile = Gio.File.new_for_path(SysClassPaths.BRIGHTNESS);
@@ -134,17 +136,18 @@ export class screenpadControl {
         Main.panel.statusArea.quickSettings.addExternalIndicator(this._screenpadToggleMenuIndicator, 1);
 
 
-//-----------------------------------------------------------------------------
-//    Creation des connexions
-//-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
+        //    Creation des connexions
+        //---------------------------------------------------------------------
 
 
-//-----------------------------------------------------------------------------
-// ATTENTION :Connexion du screenpadSlider
-//    Je déconnecter le MainSlider lorsque screenpadSlider est activé
-//    car je créer un évenement mainSlider en mode linked..
-//    le serpent se mord la queue
-//-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
+        // ATTENTION :
+        //    Connexion du screenpadSlider
+        //    Je déconnecter le MainSlider lorsque screenpadSlider est activé
+        //    car je créer un évenement mainSlider en mode linked..
+        //    le serpent se mord la queue
+        //---------------------------------------------------------------------
 
         // ____________________________
         // Connexion du screenpadSlider
@@ -167,12 +170,13 @@ export class screenpadControl {
         this._screenpadSliderChangedId = this._screenpadSlider.slider.connect('notify::value', () => this._onScreenpadSliderChanged() );
 
 
-//-----------------------------------------------------------------------------
-// ATTENTION: Connexion du main slider
-//    Je déconnecte le screenpadSlider lorsque MainSlider est activé
-//    car je créer un évenement screenpadSlider en mode linked..
-//    le serpent se mord la queue
-//-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
+        // ATTENTION: 
+        //    Connexion du main slider
+        //    Je déconnecte le screenpadSlider lorsque MainSlider est activé
+        //    car je créer un évenement screenpadSlider en mode linked..
+        //    le serpent se mord la queue
+        //---------------------------------------------------------------------
 
         // ________________________
         // Connexion du main slider
@@ -228,23 +232,24 @@ export class screenpadControl {
     }
 
 
-//-----------------------------------------------------------------------------
-//    disable
-//-----------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
+    //    disable
+    //-------------------------------------------------------------------------
 
 //  _________________________
     disableScreenpadControl() {
 
-//-----------------------------------------------------------------------------
-//    Remember
-//    Any objects or widgets created by an extension MUST be destroyed in disable().
-//    This is required for approval during review!
-//-----------------------------------------------------------------------------
-
-
-//-----------------------------------------------------------------------------
-//    Destructions des connexions
-//-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
+        //    Remember
+        //    Any objects or widgets created by an extension
+        //        MUST be destroyed in disable().
+        //    This is required for approval during review!
+        //---------------------------------------------------------------------
+        
+        
+        //---------------------------------------------------------------------
+        //    Destructions des connexions
+        //---------------------------------------------------------------------
 
         // _______________________________
         // Déconnexion du _screenpadSlider
@@ -277,9 +282,9 @@ export class screenpadControl {
         this._screenpadToggleMenuId = null;
 
 
-//-----------------------------------------------------------------------------
-//    Destruction des objects 
-//-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
+        //    Destruction des objects 
+        //---------------------------------------------------------------------
 
         // ____________________________________
         // Destruction des objects quickSetting
@@ -315,9 +320,9 @@ export class screenpadControl {
     }
 
 
-//-----------------------------------------------------------------------------
-//    Ici, je commence à traiter les connections
-//-----------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
+    //    Ici, je commence à traiter les connections
+    //-------------------------------------------------------------------------
 
     // _______________________________________________
     // Connection _SysClassBrightnessGFileOpenStream()
@@ -355,46 +360,59 @@ export class screenpadControl {
     // Connection _onScreenpadSliderChanged()
     _onScreenpadSliderChanged() {
 
-//-----------------------------------------------------------------------------
-//         ATTENTION
-//         En mode Linked, cette fonction créer un évènement _onMainSliderChanged()             
-//         POUR EVITER LES BOUCLES FOLLES, j'ai DECONNECTE MainSliderChange dans 
-//        la fonction _screenpadSliderDragBeginId et reconnecté en _screenpadSliderDragEndId
-//-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
+        //    ATTENTION
+        //    En mode Linked, cette fonction créer un évènement _onMainSliderChanged()
+        //    POUR EVITER LES BOUCLES FOLLES, j'ai DECONNECTE MainSliderChange dans 
+        //    la fonction _screenpadSliderDragBeginId et reconnecté en _screenpadSliderDragEndId
+        //---------------------------------------------------------------------
 
-        let SetScreenPadBrightness = Math.round(this._screenpadSlider.slider.value*100);
+        let screenPadMode = this._settings.get_string('screenpad-mode');
+        let setScreenPadBrightness = Math.round(this._screenpadSlider.slider.value*100);
 
-        if (this._settings.get_string('screenpad-mode') == "Off") {
-            SetScreenPadBrightness = 0;
+        // Meme si bl_power gere la fonction allumage/extinction,
+        //    0% et 100% sont réservé à off et full
+        if ( setScreenPadBrightness == 0) setScreenPadBrightness = 1;
+        if ( setScreenPadBrightness == 100) setScreenPadBrightness = 99;
+
+        if (screenPadMode == "Off") {
+            setScreenPadBrightness = 0;
             this._screenpadSlider.slider.value = 0;
         }
 
-        if (this._settings.get_string('screenpad-mode') == "Full") {
-            SetScreenPadBrightness = 100;
+        if (screenPadMode == "Full") {
+            setScreenPadBrightness = 100;
             this._screenpadSlider.slider.value = 1;
         }
 
-        this._settings.set_int('screenpad-brightness', SetScreenPadBrightness);
-
-        if(this._settings.get_string('screenpad-mode') == "Linked"){
-            this.mainSlider.slider.value = SetScreenPadBrightness/100;
-            this._settings.set_int('main-brightness', SetScreenPadBrightness);
+        if(screenPadMode == "Linked"){
+            this.mainSlider.slider.value = setScreenPadBrightness/100;
+            this._settings.set_int('main-brightness', setScreenPadBrightness);
         }
 
+        // Mise à jour du settings
+        this._settings.set_int('screenpad-brightness', setScreenPadBrightness);
+        // Pas de mise a jour du last mode si full ou off
+        if ( setScreenPadBrightness != 0 && setScreenPadBrightness != 100)
+            this._settings.set_strv ('screenpad-last-mode', [screenPadMode, setScreenPadBrightness.toString()] );
+
+        // Ecriture dans sys/class
         if(this.SYSCLASSSTATUS == "RW") {
             if(this.setScreenPadBrightnessIsRunning == false) {
                 this.setScreenPadBrightnessIsRunning = true;
-                this.setScreenPadBrightnessIsRunning = this._writeOnSysClassBrightnessStream(SetScreenPadBrightness);
+                this.setScreenPadBrightnessIsRunning = this._writeOnSysClassBrightnessStream(setScreenPadBrightness);
 
-//-----------------------------------------------------------------------------
-// ATTENTION: WriteOnSysClassBrightnessStream est la fonction d'écriture la le fichier système
-//    Je ne veux PAS voir cette fonction tourner DEUX fois en meme temps
-//    setScreenPadBrightnessIsRunning passe a "true" avant activation et "false au return
-//-----------------------------------------------------------------------------
+            //-----------------------------------------------------------------
+            //    ATTENTION: 
+            //    WriteOnSysClassBrightnessStream est la fonction d'écriture la le fichier système
+            //   Je ne veux PAS voir cette fonction tourner DEUX fois en meme temps
+            //   setScreenPadBrightnessIsRunning passe a "true" avant activation et "false au return
+            //-----------------------------------------------------------------
             }
         }
         // Petit coup debalai avant de partir
-        SetScreenPadBrightness = null;
+        setScreenPadBrightness = null;
+        screenPadMode = null;
     }
 
 
@@ -407,38 +425,46 @@ export class screenpadControl {
         //         Le Screenpad est mis a jour par cette intermédiaire 
         //----------------------------------------------------------------------------------------------
 
+        let StreamManuallyOpen = false;
+        let screenPadMode = this._settings.get_string('screenpad-mode');
+        let MainBrightness = Math.round(this.mainSlider.slider.value*100);
+        let setScreenPadBrightness = MainBrightness;
+
+        // Meme si bl_power gere la fonction allumage/extinction,
+        //    0% et 100% sont réservé à off et full
+        if ( setScreenPadBrightness == 0) setScreenPadBrightness = 1;
+        if ( setScreenPadBrightness == 100) setScreenPadBrightness = 99;
+
         // ---------------------------------------------------------------------------------------------
         //         ATTENTION
         //         Gnome peux evoyer des signaux (par exemple ALT F4 ou ALT F5 Fonction luminosité)     
         //         MAIS dans ces cas, _SysClassBrightnessStream n'est pas ouvert!                 
         //         j'ouvre manuellement, mais il faudra à le refermer.                             
         //----------------------------------------------------------------------------------------------
-
-        let StreamManuallyOpen = false;
         if(!this._SysClassBrightnessStream) {
             this._SysClassBrightnessGFileOpenStream();
             StreamManuallyOpen = true;
         }
 
-        // début de la procédure
-        let MainBrightness = Math.round(this.mainSlider.slider.value*100);
-
         this._settings.set_int('main-brightness', MainBrightness);
-        if(this._settings.get_string('screenpad-mode') == "Linked") {
-            this._screenpadSlider.slider.value = MainBrightness/100;
-            this._settings.set_int('screenpad-brightness', MainBrightness);
+
+        if(screenPadMode == "Linked") {
+            this._screenpadSlider.slider.value = setScreenPadBrightness/100;
+            this._settings.set_int('screenpad-brightness', setScreenPadBrightness);
+            this._settings.set_strv ('screenpad-last-mode', [screenPadMode, setScreenPadBrightness.toString()] );
         }
 
-        if(this.SYSCLASSSTATUS == "RW" && this._settings.get_string('screenpad-mode') == "Linked") {
+        if(this.SYSCLASSSTATUS == "RW" && screenPadMode == "Linked") {
             if(this.setScreenPadBrightnessIsRunning == false) {
                 this.setScreenPadBrightnessIsRunning = true;
                 this.setScreenPadBrightnessIsRunning = this._writeOnSysClassBrightnessStream(MainBrightness);
 
-//-----------------------------------------------------------------------------
-// ATTENTION: WriteOnSysClassBrightnessStream est la fonction d'écriture la le fichier système
-//    Je ne veux PAS voir cette fonction tourner DEUX fois en meme temps
-//    setScreenPadBrightnessIsRunning passe a "true" avant activation et "false au return
-//-----------------------------------------------------------------------------
+            //-----------------------------------------------------------------
+            //    ATTENTION: 
+            //    WriteOnSysClassBrightnessStream est la fonction d'écriture la le fichier système
+            //   Je ne veux PAS voir cette fonction tourner DEUX fois en meme temps
+            //   setScreenPadBrightnessIsRunning passe a "true" avant activation et "false au return
+            //-----------------------------------------------------------------
             }
         }
         //    Petit coup debalai avant de partir
@@ -447,6 +473,8 @@ export class screenpadControl {
 
         StreamManuallyOpen = null;
         MainBrightness = null;
+        screenPadMode = null;
+        setScreenPadBrightness = null;
     }
 
 
@@ -509,7 +537,7 @@ export class screenpadControl {
                 }
             }
         }else{
-            Main.notify( _("Erreur dans Screenpad Exension"), _("Un des fichiers /sys/class/backlight/asus_screenpad/* n'est pas accessible"));
+            Main.notify( _("Erreur dans Screenpad Exension"), _("Un des fichiers") + " /sys/class/backlight/asus_screenpad/* " + _("n'est pas accessible"));
         }
 
         // Petit coup debalai avant de partir
@@ -522,11 +550,11 @@ export class screenpadControl {
     // Connection _onScreenpadToggleMenuChange()
     _onScreenpadToggleMenuChange() {
 
-//-----------------------------------------------------------------------------
-// ATTENTION
-//    Cette fonction est appelée par la connexion settings.connect changed::screenpad-mode
-//    NE PAS MODIFIER settings 'screenpad-mode' ICI POUR EVITER LA BOUCLE INFERNAL
-//-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
+        //    ATTENTION
+        //    Cette fonction est appelée par la connexion settings.connect changed::screenpad-mode
+        //    NE PAS MODIFIER settings 'screenpad-mode' ICI POUR EVITER LA BOUCLE INFERNAL
+        //---------------------------------------------------------------------
 
         let functionResult;
         let screenpadmode = this._settings.get_string('screenpad-mode');
@@ -568,7 +596,7 @@ export class screenpadControl {
 //                //this._screenpadSlider.reactive = true;
 
                 // on était off précédement on set ScreenPadBrighness
-                if (this._settings.get_int('screenpad-brightness') == 0)
+                if (this._settings.get_int('screenpad-brightness') == 0 || this._settings.get_int('screenpad-brightness') == 100)
                     this._UpdateScreenPadBrightness(parseInt(this._settings.get_strv('screenpad-last-mode')[1]));
 
                 // puis mise à jour du background image
@@ -628,8 +656,8 @@ export class screenpadControl {
         }
 
         // enregistrement du dernier état connu
-        // sauf dans le cas de Off
-        if (screenpadmode != "Off")
+        // sauf dans le cas de Off ou Full 
+        if (screenpadmode != "Off" && screenpadmode != "Full")
             this._settings.set_strv ('screenpad-last-mode', [screenpadmode, this._settings.get_int('screenpad-brightness').toString() ] );
 
         // Petit coup debalai avant de partir
@@ -637,22 +665,23 @@ export class screenpadControl {
     }
 
 
-//-----------------------------------------------------------------------------
-//    Ici, je commence à traiter les fonctions
-//-----------------------------------------------------------------------------
-
-
-// ______________________________________________
-// Le Toggle switch ou le slider icon ont changés
-// mise à jour des luminosité et des slider
+    //-----------------------------------------------------------------------------
+    //    Ici, je commence à traiter les fonctions
+    //-----------------------------------------------------------------------------
+    
+    
+    // ______________________________________________
+    // Le Toggle switch ou le slider icon ont changés
+    // mise à jour des luminosité et des slider
     async _UpdateScreenPadBrightness(brightnessValue) {
 
-//-----------------------------------------------------------------------------
-// ATTENTION: l'evenement _screenpadSliderDragBeginId n'a pas lieux!,
-//    Le RW Stream n'est pas ouvert
-//        Ouverture manuel du stream
-//        _onScreenpadSliderChanged() s'occupe de l'écriture
-//-----------------------------------------------------------------------------
+        //---------------------------------------------------------------------
+        //    ATTENTION:
+        //    l'evenement _screenpadSliderDragBeginId n'a pas lieux!
+        //    Le RW Stream n'est pas ouvert
+        //        Ouverture manuel du stream
+        //        _onScreenpadSliderChanged() s'occupe de l'écriture
+        //---------------------------------------------------------------------
 
         // Ouverture du RWstream
         if(this.SYSCLASSSTATUS == "RW")
@@ -671,11 +700,10 @@ export class screenpadControl {
     }
 
 
-// _________________________________________
-// écriture dans le SysClassBrightnessStream
-// deux fonction seulement on acces ici:
-// _onMainSliderChange et _onScreenpad SliderChange
-
+    // _________________________________________
+    // écriture dans le SysClassBrightnessStream
+    // deux fonction seulement on acces ici:
+    // _onMainSliderChange et _onScreenpad SliderChange
     _writeOnSysClassBrightnessStream(finalBrightnessValue) {
         // pour certaine raison que j'ignore, le min-max de /sys/class/led...brightness est de 0 à 235
         finalBrightnessValue = Math.round(finalBrightnessValue*235/100);

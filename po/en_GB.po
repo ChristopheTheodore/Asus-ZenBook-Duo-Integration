@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZenBook Duo Integration\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-12 18:41+0000\n"
-"PO-Revision-Date: 2025-08-13 16:27+0400\n"
+"POT-Creation-Date: 2025-08-19 22:15+0400\n"
+"PO-Revision-Date: 2025-08-19 22:19+0400\n"
 "Last-Translator: Christophe Theodore\n"
 "Language-Team: English\n"
 "Language: en_US\n"
@@ -18,246 +18,257 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.6\n"
 
-#: prefs.js:66
+#: extension.js:131 extension.js:142 extension.js:153
+msgid "Désactivation de ZenBook Extension"
+msgstr "ZenBook Extension Deactivation"
+
+#: extension.js:132
+msgid "Le panneau de contrôle principal n’est pas accessible."
+msgstr ""
+
+#: extension.js:143 extension.js:154
+msgid "Un fichier"
+msgstr "A file"
+
+#: extension.js:143
+msgid "n’a pas été détecté. Un noyau supérieur à 6.5 est requis."
+msgstr "was not detected, kernel 6.5 and more is necessary"
+
+#: extension.js:154
+msgid ""
+"est en lecture seule. Consultez les préférences pour configurer /etc/udev/"
+"rules.d/99-asus.rules."
+msgstr ""
+"is read-only. Check preferences to configure /etc/udev/rules.d/99-asus.rules."
+
+#: extension.js:444
+msgid "Préférences"
+msgstr "Preferences"
+
+#: prefs.js:68
 msgid "Screenpad"
 msgstr "Screenpad"
 
-#: prefs.js:81
+#: prefs.js:83
 msgid "Activer les fonctions du screenpad"
 msgstr "Enable Screenpad functions"
 
-#: prefs.js:82
+#: prefs.js:84
 msgid "Voir les Parametres"
 msgstr "View Settings"
 
-#: prefs.js:83
+#: prefs.js:85
 msgid "Gérer les Background"
 msgstr "Manage Backgrounds"
 
-#: prefs.js:90
+#: prefs.js:92
 msgid "Active les slider du screenpad"
 msgstr "Enable Screenpad sliders"
 
-#: prefs.js:109
+#: prefs.js:110
 msgid "Si éteind, Alume le screenpad au démarrage"
 msgstr "If turned off, wake Screenpad on startup"
 
-#: prefs.js:137
+#: prefs.js:138
 msgid "Activer les effets background"
 msgstr "Enable background effects"
 
-#: prefs.js:138
+#: prefs.js:139
 msgid "Les fonctions du screenpad doivent etre actives"
 msgstr "Screenpad functions must be active"
 
-#: prefs.js:156
+#: prefs.js:158
 msgid "Background Image On"
 msgstr "Background Image On"
 
-#: prefs.js:165
+#: prefs.js:169
 msgid "Background Image Off"
 msgstr "Background Image Off"
 
-#: prefs.js:238 prefs.js:251
+#: prefs.js:245 prefs.js:256
 msgid "Minimum Requis"
 msgstr "Minimum Requirements"
 
-#: prefs.js:258
+#: prefs.js:262
 msgid "Lisez le fichier readme pour plus d'information"
 msgstr "See the readme file for more information"
 
-#: prefs.js:285
+#: prefs.js:287
 msgid "Cette extension nécessite :"
 msgstr "This extension requires:"
 
-#: prefs.js:286
+#: prefs.js:288
 msgid "Un noyau Linux ≥ 6.5"
 msgstr "Linux kernel ≥ 6.5"
 
-#: prefs.js:287
+#: prefs.js:289
 msgid " GNOME Shell ≥ 45"
 msgstr " GNOME Shell ≥ 45"
 
-#: prefs.js:288
+#: prefs.js:290
 msgid "Vérifiez votre version avec :"
 msgstr "Check your version with:"
 
-#: prefs.js:289
+#: prefs.js:291
 msgid "pour le noyau"
 msgstr "for the kernel"
 
-#: prefs.js:290
+#: prefs.js:292
 msgid "pour GNOME"
 msgstr "for GNOME"
 
-#: prefs.js:301
+#: prefs.js:303
 msgid "Cette extension à besoin d'un accès en lecture et écriture à :"
 msgstr "This extension needs read/write access to:"
 
-#: prefs.js:304
+#: prefs.js:306
 msgid "Créez un fichier"
 msgstr "Create a file"
 
-#: prefs.js:304
+#: prefs.js:306
 msgid "avec ce contenu :"
 msgstr "with this content:"
 
-#: prefs.js:310
+#: prefs.js:312
 msgid "Puis redémarrer la cession ou rechargez les règles avec :"
 msgstr "Then restart the session or reload rules with:"
 
-#: prefs.js:323
+#: prefs.js:325
 msgid "À propos"
 msgstr "About"
 
-#: prefs.js:355
+#: prefs.js:357
 msgid "Intégration des fonctions Asus au bureau Gnome"
 msgstr "Asus functions integration for Gnome desktop"
 
-#: prefs.js:355
+#: prefs.js:357
 msgid "modele:"
 msgstr "model:"
 
-#: prefs.js:378
+#: prefs.js:380
 msgid "Auteur"
 msgstr "Author"
 
-#: prefs.js:400
+#: prefs.js:385
+msgid "Projet initial"
+msgstr ""
+
+#: prefs.js:402
 msgid "Ce logiciel est fourni sans AUCUNE GARANTIE."
 msgstr "This software comes with ABSOLUTELY NO WARRANTY."
 
-#: prefs.js:401
+#: prefs.js:403
 #, javascript-format
 msgid "Voir la %sLicence Publique Générale GNU%s pour plus de détails."
 msgstr "See the %sGNU General Public License%s for details."
 
-#: prefs.js:425
+#: prefs.js:427
 msgid "Code écrit par"
 msgstr "Code written by"
 
-#: prefs.js:426
+#: prefs.js:428
 msgid "Avec l'aide de la communauté."
 msgstr "With community help."
 
-#: prefs.js:427
+#: prefs.js:429
 msgid ""
 "Grand merci au développeurs, qui sans le savoir, m'ont permis d'obtenir ce "
 "résultat."
 msgstr ""
 "Special thanks to developers who unknowingly helped achieve this result."
 
-#: prefs.js:436
+#: prefs.js:438
 msgid "Une première version d'asus intégration avait été écrite par"
 msgstr "Initial Asus integration version was written by"
 
-#: prefs.js:436
+#: prefs.js:438
 msgid "et"
 msgstr "and"
 
-#: prefs.js:438
+#: prefs.js:440
 msgid ""
 "Je me suis inspiré de l'idée pour créer cette extension, je remercie les "
 "auteurs."
 msgstr ""
 "I was inspired by this idea to create the extension, thanks to the authors."
 
-#: prefs.js:447
+#: prefs.js:449
 msgid "Logiciel libre sous licence GPL-2.0+"
 msgstr "Free software under GPL-2.0+ license"
 
-#: prefs.js:448
+#: prefs.js:450
 msgid "Vous êtes libre de:"
 msgstr "You are free to:"
 
-#: prefs.js:449
+#: prefs.js:451
 msgid "Utiliser, étudier, partager ce logiciel"
 msgstr "Use, study, share this software"
 
-#: prefs.js:450
+#: prefs.js:452
 msgid "Le modifier selon vos besoins"
 msgstr "Modify it for your needs"
 
-#: prefs.js:451
+#: prefs.js:453
 msgid "Redistribuer vos modifications"
 msgstr "Redistribute your modifications"
 
-#: extension.js:137 extension.js:148 extension.js:159
-msgid "Désactivation de ZenBook Extension"
-msgstr "ZenBook Extension Deactivation"
-
-#: extension.js:138
-msgid "Le panneau de contrôle principal n'est pas accessible."
-msgstr "The main control panel is not accessible."
-
-#: extension.js:149
-msgid ""
-"Un fichier /sys/class/backlight/asus_screenpad/* n'a pas été détecté. Un "
-"noyau supérieur à 6.5 est requis."
-msgstr ""
-"A /sys/class/backlight/asus_screenpad/* file was not detected. Kernel 6.5+ "
-"required."
-
-#: extension.js:160
-msgid ""
-"Un fichier /sys/class/backlight/asus_screenpad/* est en lecture seule. "
-"Consultez les préférences pour configurer /etc/udev/rules.d/99-asus.rules."
-msgstr ""
-"A /sys/class/backlight/asus_screenpad/* file is read-only. Check preferences "
-"to configure /etc/udev/rules.d/99-asus.rules."
-
-#: extension.js:424
-msgid "Préférences"
-msgstr "Preferences"
-
-#: ClassObjects/screenpadobjects.js:330 ClassObjects/screenpadobjects.js:345
-#: ClassObjects/screenpadobjects.js:516 ClassObjects/screenpadobjects.js:706
-msgid "Erreur dans Screenpad Exension"
-msgstr "Error in Screenpad Extension"
-
-#: ClassObjects/screenpadobjects.js:516
-msgid ""
-"Un des fichiers /sys/class/backlight/asus_screenpad/* n'est pas accessible"
-msgstr "One of /sys/class/backlight/asus_screenpad/* files is not accessible"
-
-#: ClassObjects/quicksettingobjects.js:36
+#: ClassObjects/quicksettingobjects.js:38
 msgid "Icon Accessible Name"
 msgstr "Icon Accessible Name"
 
-#: ClassObjects/quicksettingobjects.js:48
+#: ClassObjects/quicksettingobjects.js:51
 msgid "ScreenPad-Slider"
 msgstr "ScreenPad-Slider"
 
-#: ClassObjects/quicksettingobjects.js:70
+#: ClassObjects/quicksettingobjects.js:72
 msgid "Linked"
 msgstr "Linked"
 
-#: ClassObjects/quicksettingobjects.js:71
+#: ClassObjects/quicksettingobjects.js:73
 msgid "ScreenPad linked"
 msgstr "ScreenPad linked"
 
-#: ClassObjects/quicksettingobjects.js:87
+#: ClassObjects/quicksettingobjects.js:88
 msgid "ScreenPad"
 msgstr "ScreenPad"
 
-#: ClassObjects/quicksettingobjects.js:88
+#: ClassObjects/quicksettingobjects.js:89
 msgid "ScreenPad Status"
 msgstr "ScreenPad Status"
 
-#: ClassObjects/quicksettingobjects.js:99
+#: ClassObjects/quicksettingobjects.js:100
 msgid "ScreenPad Lie"
 msgstr "ScreenPad Linked"
 
-#: ClassObjects/quicksettingobjects.js:100
+#: ClassObjects/quicksettingobjects.js:101
 msgid "ScreenPad Libre"
 msgstr "ScreenPad Free"
 
-#: ClassObjects/quicksettingobjects.js:101
+#: ClassObjects/quicksettingobjects.js:102
 msgid "Full"
 msgstr "Full"
 
-#: ClassObjects/quicksettingobjects.js:102
+#: ClassObjects/quicksettingobjects.js:103
 msgid "ScreenPad éteint"
 msgstr "ScreenPad Off"
+
+#: ClassObjects/screenpadobjects.js:337 ClassObjects/screenpadobjects.js:352
+#: ClassObjects/screenpadobjects.js:540 ClassObjects/screenpadobjects.js:718
+msgid "Erreur dans Screenpad Exension"
+msgstr "Error in Screenpad Extension"
+
+#: ClassObjects/screenpadobjects.js:540
+msgid "Un des fichiers"
+msgstr ""
+
+#: ClassObjects/screenpadobjects.js:540
+msgid "n'est pas accessible"
+msgstr ""
+
+#~ msgid ""
+#~ "Un des fichiers /sys/class/backlight/asus_screenpad/* n'est pas accessible"
+#~ msgstr ""
+#~ "One of /sys/class/backlight/asus_screenpad/* files is not accessible"
 
 #~ msgid "modele: zenBook Duo"
 #~ msgstr "model: zenBook Duo"
