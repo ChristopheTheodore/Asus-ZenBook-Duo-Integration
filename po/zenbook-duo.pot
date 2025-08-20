@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-19 22:15+0400\n"
+"POT-Creation-Date: 2025-08-20 18:49+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,246 +17,250 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:131 extension.js:142 extension.js:153
-msgid "Désactivation de ZenBook Extension"
+#: extension.js:93 extension.js:104 extension.js:117
+msgid "ZenBook Extension deactivation"
 msgstr ""
 
-#: extension.js:132
-msgid "Le panneau de contrôle principal n’est pas accessible."
+#: extension.js:94
+msgid "The main control panel is not accessible."
 msgstr ""
 
-#: extension.js:143 extension.js:154
-msgid "Un fichier"
+#: extension.js:105 extension.js:118
+msgid "A file"
 msgstr ""
 
-#: extension.js:143
-msgid "n’a pas été détecté. Un noyau supérieur à 6.5 est requis."
+#: extension.js:107
+msgid "was not detected. A kernel newer than 6.5 is required."
 msgstr ""
 
-#: extension.js:154
-msgid ""
-"est en lecture seule. Consultez les préférences pour configurer /etc/udev/"
-"rules.d/99-asus.rules."
+#: extension.js:120
+msgid "is read-only. See the preferences to configure"
 msgstr ""
 
-#: extension.js:444
-msgid "Préférences"
+#: extension.js:317
+msgid "Preferences"
 msgstr ""
 
-#: prefs.js:68
+#: prefs.js:67
 msgid "Screenpad"
 msgstr ""
 
+#: prefs.js:82
+msgid "Enable ScreenPad functions"
+msgstr ""
+
 #: prefs.js:83
-msgid "Activer les fonctions du screenpad"
+msgid "View Settings"
 msgstr ""
 
 #: prefs.js:84
-msgid "Voir les Parametres"
+msgid "Manage Backgrounds"
 msgstr ""
 
-#: prefs.js:85
-msgid "Gérer les Background"
+#: prefs.js:91
+msgid "Enable ScreenPad sliders"
 msgstr ""
 
-#: prefs.js:92
-msgid "Active les slider du screenpad"
+#: prefs.js:109
+msgid "If off, turn on the ScreenPad at startup"
 msgstr ""
 
-#: prefs.js:110
-msgid "Si éteind, Alume le screenpad au démarrage"
+#: prefs.js:137
+msgid "Enable background effects"
 msgstr ""
 
 #: prefs.js:138
-msgid "Activer les effets background"
+msgid "ScreenPad functions must be active"
 msgstr ""
 
-#: prefs.js:139
-msgid "Les fonctions du screenpad doivent etre actives"
-msgstr ""
-
-#: prefs.js:158
+#: prefs.js:157
 msgid "Background Image On"
 msgstr ""
 
-#: prefs.js:169
+#: prefs.js:168
 msgid "Background Image Off"
 msgstr ""
 
-#: prefs.js:245 prefs.js:256
-msgid "Minimum Requis"
+#: prefs.js:243
+msgid "Requirements"
 msgstr ""
 
-#: prefs.js:262
-msgid "Lisez le fichier readme pour plus d'information"
+#: prefs.js:254
+msgid "Minimum Requirements"
+msgstr ""
+
+#: prefs.js:260
+msgid "Read the readme file for more information"
+msgstr ""
+
+#: prefs.js:285
+msgid "This extension requires:"
+msgstr ""
+
+#: prefs.js:286
+msgid "A Linux kernel ≥ 6.5"
 msgstr ""
 
 #: prefs.js:287
-msgid "Cette extension nécessite :"
-msgstr ""
-
-#: prefs.js:288
-msgid "Un noyau Linux ≥ 6.5"
-msgstr ""
-
-#: prefs.js:289
 msgid " GNOME Shell ≥ 45"
 msgstr ""
 
+#: prefs.js:288
+msgid "Check your version with:"
+msgstr ""
+
+#: prefs.js:289
+msgid "for the kernel"
+msgstr ""
+
 #: prefs.js:290
-msgid "Vérifiez votre version avec :"
+msgid "for GNOME"
 msgstr ""
 
-#: prefs.js:291
-msgid "pour le noyau"
+#: prefs.js:301
+msgid "This extension needs read and write access to:"
 msgstr ""
 
-#: prefs.js:292
-msgid "pour GNOME"
+#: prefs.js:304
+msgid "Create a file"
 msgstr ""
 
-#: prefs.js:303
-msgid "Cette extension à besoin d'un accès en lecture et écriture à :"
+#: prefs.js:304
+msgid "with this content:"
 msgstr ""
 
-#: prefs.js:306
-msgid "Créez un fichier"
+#: prefs.js:310
+msgid "Then restart your session or reload the rules with:"
 msgstr ""
 
-#: prefs.js:306
-msgid "avec ce contenu :"
+#: prefs.js:323
+msgid "About"
 msgstr ""
 
-#: prefs.js:312
-msgid "Puis redémarrer la cession ou rechargez les règles avec :"
+#: prefs.js:355
+msgid "Integration of screenpad functions into the Gnome desktop"
 msgstr ""
 
-#: prefs.js:325
-msgid "À propos"
+#: prefs.js:378
+msgid ""
+"This extension is not affiliated, funded,or in any way associated with "
+"Asus.\n"
+"\n"
+"Author"
 msgstr ""
 
-#: prefs.js:357
-msgid "Intégration des fonctions Asus au bureau Gnome"
+#: prefs.js:383
+msgid "Initial project"
 msgstr ""
 
-#: prefs.js:357
-msgid "modele:"
+#: prefs.js:400
+msgid "This software is provided WITHOUT ANY WARRANTY."
 msgstr ""
 
-#: prefs.js:380
-msgid "Auteur"
-msgstr ""
-
-#: prefs.js:385
-msgid "Projet initial"
-msgstr ""
-
-#: prefs.js:402
-msgid "Ce logiciel est fourni sans AUCUNE GARANTIE."
-msgstr ""
-
-#: prefs.js:403
+#: prefs.js:401
 #, javascript-format
 msgid "Voir la %sLicence Publique Générale GNU%s pour plus de détails."
 msgstr ""
 
+#: prefs.js:425
+msgid "Code written by"
+msgstr ""
+
+#: prefs.js:426
+msgid "With help from the community."
+msgstr ""
+
 #: prefs.js:427
-msgid "Code écrit par"
-msgstr ""
-
-#: prefs.js:428
-msgid "Avec l'aide de la communauté."
-msgstr ""
-
-#: prefs.js:429
 msgid ""
-"Grand merci au développeurs, qui sans le savoir, m'ont permis d'obtenir ce "
-"résultat."
+"Many thanks to the developers, who unknowingly helped me achieve this result."
+msgstr ""
+
+#: prefs.js:436
+msgid "A first version of Asus integration was written by"
+msgstr ""
+
+#: prefs.js:436
+msgid "and"
 msgstr ""
 
 #: prefs.js:438
-msgid "Une première version d'asus intégration avait été écrite par"
-msgstr ""
-
-#: prefs.js:438
-msgid "et"
-msgstr ""
-
-#: prefs.js:440
 msgid ""
-"Je me suis inspiré de l'idée pour créer cette extension, je remercie les "
-"auteurs."
+"I was inspired by the idea to create this extension, I thank the authors."
+msgstr ""
+
+#: prefs.js:447
+msgid "Free software under the GPL-2.0+ license"
+msgstr ""
+
+#: prefs.js:448
+msgid "You are free to:"
 msgstr ""
 
 #: prefs.js:449
-msgid "Logiciel libre sous licence GPL-2.0+"
+msgid "Use, study, and share this software"
 msgstr ""
 
 #: prefs.js:450
-msgid "Vous êtes libre de:"
+msgid "Modify it to suit your needs"
 msgstr ""
 
 #: prefs.js:451
-msgid "Utiliser, étudier, partager ce logiciel"
+msgid "Redistribute your modifications"
 msgstr ""
 
-#: prefs.js:452
-msgid "Le modifier selon vos besoins"
-msgstr ""
-
-#: prefs.js:453
-msgid "Redistribuer vos modifications"
-msgstr ""
-
-#: ClassObjects/quicksettingobjects.js:38
+#: ClassObjects/quicksettingobjects.js:35
 msgid "Icon Accessible Name"
 msgstr ""
 
-#: ClassObjects/quicksettingobjects.js:51
+#: ClassObjects/quicksettingobjects.js:47
 msgid "ScreenPad-Slider"
 msgstr ""
 
-#: ClassObjects/quicksettingobjects.js:72
+#: ClassObjects/quicksettingobjects.js:61
 msgid "Linked"
 msgstr ""
 
-#: ClassObjects/quicksettingobjects.js:73
+#: ClassObjects/quicksettingobjects.js:62
 msgid "ScreenPad linked"
 msgstr ""
 
-#: ClassObjects/quicksettingobjects.js:88
+#: ClassObjects/quicksettingobjects.js:76
 msgid "ScreenPad"
 msgstr ""
 
-#: ClassObjects/quicksettingobjects.js:89
+#: ClassObjects/quicksettingobjects.js:77
 msgid "ScreenPad Status"
 msgstr ""
 
-#: ClassObjects/quicksettingobjects.js:100
-msgid "ScreenPad Lie"
+#: ClassObjects/quicksettingobjects.js:87
+msgid "ScreenPad Linked"
 msgstr ""
 
-#: ClassObjects/quicksettingobjects.js:101
-msgid "ScreenPad Libre"
+#: ClassObjects/quicksettingobjects.js:88
+msgid "ScreenPad Free"
 msgstr ""
 
-#: ClassObjects/quicksettingobjects.js:102
-msgid "Full"
+#: ClassObjects/quicksettingobjects.js:89
+msgid "ScreenPad Full"
 msgstr ""
 
-#: ClassObjects/quicksettingobjects.js:103
-msgid "ScreenPad éteint"
+#: ClassObjects/quicksettingobjects.js:90
+msgid "ScreenPad Off"
 msgstr ""
 
-#: ClassObjects/screenpadobjects.js:337 ClassObjects/screenpadobjects.js:352
-#: ClassObjects/screenpadobjects.js:540 ClassObjects/screenpadobjects.js:718
-msgid "Erreur dans Screenpad Exension"
+#: ClassObjects/screenpadobjects.js:238 ClassObjects/screenpadobjects.js:251
+#: ClassObjects/screenpadobjects.js:406 ClassObjects/screenpadobjects.js:550
+msgid "Error in ScreenPad Extension"
 msgstr ""
 
-#: ClassObjects/screenpadobjects.js:540
-msgid "Un des fichiers"
+#: ClassObjects/screenpadobjects.js:406
+msgid "One of the files"
 msgstr ""
 
-#: ClassObjects/screenpadobjects.js:540
-msgid "n'est pas accessible"
+#: ClassObjects/screenpadobjects.js:406
+msgid "is not accessible"
+msgstr ""
+
+#: ClassObjects/screenpadobjects.js:550
+msgid "is not open"
 msgstr ""

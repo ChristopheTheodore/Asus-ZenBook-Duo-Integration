@@ -2,6 +2,94 @@
 # Extension GNOME pour Asus ZenBook Duo
 ### By Christophe Theodore
 
+### This extension is not affiliated, funded,or in any way associated with Asus.
+
+
+Slider             |  Toggle Switch
+:-------------------------:|:-------------------------:
+![Sample Image](./ScreenShots/showRoom2.png) | ![Sample Image](./ScreenShots/showRoom3.png)
+
+## Features
+
+Control the secondary display (ScreenPad) on Asus ZenBook Duo laptops with GNOME:
+Brightness Modes:
+  - Linked      : Syncs with main display
+  - Free        : Independent control
+  - Full        : Maximum brightness
+  - Off         : Disables ScreenPad
+
+Wallpapers: Automatic adaptation based on ScreenPad state
+
+## Requirements
+
+### Hardware:
+  - Asus ZenBook Duo (ScreenPad models)
+    - Other model in the futur
+
+### System:
+  - Linux kernel ≥ 6.5 
+    - note: if the kernel is lower, you can install the modul asus-wmi-screenpad manually see https://github.com/Plippo/asus-wmi-screenpad
+  - GNOME Shell ≥ 45
+
+### Permissions:
+  - Read/write access to:
+    - /sys/class/backlight/asus_screenpad/brightness
+    - /sys/class/backlight/asus_screenpad/bl_power
+
+### Installation
+Install extension:
+  - Via GNOME Extensions (https://extensions.gnome.org/)
+  - via command line:
+      ```
+      gnome-extensions enable zenbookDuoIntegration@christophe.extension
+      ```
+  - Configure permissions:
+    - Creez un fichier /etc/udev/rules.d/99-asus.rules
+      ```
+      sudo nano /etc/udev/rules.d/99-asus.rules
+      ```
+    - Copiez-y :
+      ```
+			# Règles pour Asus ScreenPad
+			ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="asus_screenpad", RUN+="/bin/chmod a+w /sys/class/backlight/%k/brightness"
+			ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="asus_screenpad", RUN+="/bin/chmod a+w /sys/class/backlight/%k/bl_power"
+      ```
+    - Redémarrez La cession où tout simplement les règles udev :
+       ```
+      sudo udevadm control --reload-rules
+      ```
+
+### Configuration
+
+Access preferences:
+via extensions application (https://extensions.gnome.org/) or command line
+```
+gnome-extensions prefs zenbookDuoIntegration@christophe.extension
+```
+
+![Sample Image](./ScreenShots/showRoom1.png)
+
+Available options:
+### - Enable ScreenPad controls
+    - Enable screenpad sliders: Enables or disables the slider.
+    - (All other functions become inaccessible if disabled.)
+ ### - Auto-adjust on startup
+     - Automatically adjusts the screenpad brightness to the main screen. IF:
+      - this feature is enabled,
+      - the computer or extension starts,
+      - the screenpad was previously set to Off or Full.
+### - Wallpaper management
+    - Enable background effects: Automatically changes the screen background. IF:
+      - this feature is enabled,
+      - when the screenpad is turned on or off.
+ ### - Custom wallpaper paths
+     - Background Image On (Off): Background image file.
+
+
+
+## En Francais
+
+
 Slider             |  Toggle Switch
 :-------------------------:|:-------------------------:
 ![Sample Image](./ScreenShots/showRoom2.png) | ![Sample Image](./ScreenShots/showRoom3.png)
@@ -42,7 +130,7 @@ L'installation de l'extension Asus ZenBook Duo Intégration pour gnome, se fait 
   - Téléchargez l'extension depuis [GNOME Extensions](https://extensions.gnome.org/)
   - Activez l'extension à l'aide de l'application `Extensions` ou avec la commande
       ```
-      gnome-extensions enable zenbookDuoIntegration@christophe.extension ]
+      gnome-extensions enable zenbookDuoIntegration@christophe.extension
       ```
   - Configurez les permissions :
     - Creez un fichier /etc/udev/rules.d/99-asus.rules
@@ -57,7 +145,7 @@ L'installation de l'extension Asus ZenBook Duo Intégration pour gnome, se fait 
       ```
     - Redémarrez La cession où tout simplement les règles udev :
        ```
-      sudo udevadm control --reload-rules ]
+      sudo udevadm control --reload-rules
       ```
 
 ### Configuration
@@ -86,93 +174,6 @@ gnome-extensions prefs zenbookDuoIntegration@christophe.extension
 
 ###  - Background Image On (Off)
      - Fichier Image des backgrounds
-
-
-### English Version:
-
-
-Slider             |  Toggle Switch
-:-------------------------:|:-------------------------:
-![Sample Image](./ScreenShots/showRoom2.png) | ![Sample Image](./ScreenShots/showRoom3.png)
-
-## Features
-
-Control the secondary display (ScreenPad) on Asus ZenBook Duo laptops with GNOME:
-Brightness Modes:
-  - Linked      : Syncs with main display
-  - Free        : Independent control
-  - Full        : Maximum brightness
-  - Off         : Disables ScreenPad
-
-Wallpapers: Automatic adaptation based on ScreenPad state
-
-## Requirements
-
-### Hardware:
-  - Asus ZenBook Duo (ScreenPad models)
-    - Other model in the futur
-
-### System:
-  - Linux kernel ≥ 6.5 
-    - note: if the kernel is lower, you can install the modul asus-wmi-screenpad manually see https://github.com/Plippo/asus-wmi-screenpad
-  - GNOME Shell ≥ 45
-
-### Permissions:
-  - Read/write access to:
-    - /sys/class/backlight/asus_screenpad/brightness
-    - /sys/class/backlight/asus_screenpad/bl_power
-
-### Installation
-Install extension:
-  - Via GNOME Extensions (https://extensions.gnome.org/)
-  - via command line:
-      ```
-      gnome-extensions enable zenbookDuoIntegration@christophe.extension ]
-      ```
-  - Configure permissions:
-    - Creez un fichier /etc/udev/rules.d/99-asus.rules
-      ```
-      sudo nano /etc/udev/rules.d/99-asus.rules
-      ```
-    - Copiez-y :
-      ```
-			# Règles pour Asus ScreenPad
-			ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="asus_screenpad", RUN+="/bin/chmod a+w /sys/class/backlight/%k/brightness"
-			ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="asus_screenpad", RUN+="/bin/chmod a+w /sys/class/backlight/%k/bl_power"
-      ```
-    - Redémarrez La cession où tout simplement les règles udev :
-       ```
-      sudo udevadm control --reload-rules
-      ```
-
-### Configuration
-
-Access preferences:
-via extensions application (https://extensions.gnome.org/) or command line
-```
-gnome-extensions prefs zenbookDuoIntegration@christophe.extension]
-```
-
-![Sample Image](./ScreenShots/showRoom1.png)
-
-Available options:
-### - Enable ScreenPad controls
-    - Enable screenpad sliders: Enables or disables the slider.
-    - (All other functions become inaccessible if disabled.)
- ### - Auto-adjust on startup
-     - Automatically adjusts the screenpad brightness to the main screen. IF:
-      - this feature is enabled,
-      - the computer or extension starts,
-      - the screenpad was previously set to Off or Full.
-### - Wallpaper management
-    - Enable background effects: Automatically changes the screen background. IF:
-      - this feature is enabled,
-      - when the screenpad is turned on or off.
- ### - Custom wallpaper paths
-     - Background Image On (Off): Background image file.
-
-
-
 
 ## Pour les Développeurs
 

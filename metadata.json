@@ -1,11 +1,11 @@
 {
   "name": "Asus-ZenBook-Duo-Integration",
-  "description": "Intègre la gestion de l'écran secondaire de l'Asus ZenBook Duo dans GNOME Shell pour une expérience fluide.",
+  "description": "Integration of screenpad functions into the Gnome desktop.\n This extension is not affiliated, funded, or in any way associated with Asus.",
   "gettext-domain": "asuszenbookduointegration",
   "uuid": "asuszenbookduointegration@ChristopheTheodore.extension",
   "shell-version": ["45", "46", "47", "48"],
   "url": "https://github.com/ChristopheTheodore/Asus-ZenBook-Duo-Integration.git",
-  "version": 3,
+  "version": 4,
   "settings-schema": "org.gnome.shell.zen-book-duo-integration",
   "license": "GPL-2.0"
 }

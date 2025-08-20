@@ -3,6 +3,7 @@
 //-----------------------------------------------------------------------------
 //    ./Config/config.js
 
+//    This extension is not affiliated, funded,or in any way associated with Asus.
 //    Code ecrit par Christophe Theodore
 //    Intégration des fonctions de l'Asus ZenBook Duo dans GNOME Shell
 

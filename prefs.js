@@ -3,6 +3,7 @@
 //-----------------------------------------------------------------------------
 //    ./prefs.js
 
+//    This extension is not affiliated, funded,or in any way associated with Asus.
 //    Code ecrit par Christophe Theodore
 //    Intégration des fonctions de l'Asus ZenBook Duo dans GNOME Shell
 
@@ -42,8 +43,6 @@ export default class zenBookDuoIntegration extends ExtensionPreferences {
         // Declaration du setting
         window._settings = this.getSettings(GSettingsPaths.SETTINGS);
 
-        //window.search_enabled = true;
-
         // __________________
         // Création des pages
         const SCREENPADPAGE = new screenpadPage(window._settings, this.path);
@@ -80,16 +79,16 @@ const screenpadPage = GObject.registerClass(class screenpadPage extends Adw.Pref
 
 
         // Création des trois groupes
-        const ActiverPreferencesGroup = new Adw.PreferencesGroup({ title: _("Activer les fonctions du screenpad"), });
-        const voirPreferencesGroup = new Adw.PreferencesGroup({ title: _("Voir les Parametres"), });
-        const changePreferencesGroup = new Adw.PreferencesGroup({ title: _("Gérer les Background"), });
+        const ActiverPreferencesGroup = new Adw.PreferencesGroup({ title: _("Enable ScreenPad functions"), });
+        const voirPreferencesGroup = new Adw.PreferencesGroup({ title: _("View Settings"), });
+        const changePreferencesGroup = new Adw.PreferencesGroup({ title: _("Manage Backgrounds"), });
 
 
         // _____________________________
         // GROUPE1 - activer la fonction
         const activateScreenPadExtension = this._settings.get_boolean('screenpad-extension-activated');
 
-        const activateScreenPadExtensionRow = new Adw.SwitchRow({ title: _('Active les slider du screenpad'), });
+        const activateScreenPadExtensionRow = new Adw.SwitchRow({ title: _("Enable ScreenPad sliders"), });
         activateScreenPadExtensionRow.set_active (activateScreenPadExtension);
 
         activateScreenPadExtensionRow.connect('notify::active', ()=> {
@@ -107,7 +106,7 @@ const screenpadPage = GObject.registerClass(class screenpadPage extends Adw.Pref
 
         const autoAdjustScreenPad = this._settings.get_boolean('screenpad-auto-adjust');
 
-        const autoAdjustScreenPadRow = new Adw.SwitchRow({ title: _("Si éteind, Alume le screenpad au démarrage"), });
+        const autoAdjustScreenPadRow = new Adw.SwitchRow({ title: _("If off, turn on the ScreenPad at startup"), });
         autoAdjustScreenPadRow.set_active (autoAdjustScreenPad);
 
         autoAdjustScreenPadRow.connect('notify::active', ()=> {
@@ -135,8 +134,8 @@ const screenpadPage = GObject.registerClass(class screenpadPage extends Adw.Pref
 
         // Décorations
         const backGroundControlRow = new Adw.SwitchRow( {
-            title: _("Activer les effets background"),
-            subtitle: _("Les fonctions du screenpad doivent etre actives"),
+            title: _("Enable background effects"),
+            subtitle: _("ScreenPad functions must be active"),
             active: activateBackGroundValue
         });
         backGroundControlRow.set_active (activateBackGroundValue);
@@ -155,7 +154,7 @@ const screenpadPage = GObject.registerClass(class screenpadPage extends Adw.Pref
 
         // Background Image on
         const backgroundImageOn = this._settings.get_string('background-image-on');
-        const backgroundImageOnRow = new Adw.EntryRow({ title: _('Background Image On'), });
+        const backgroundImageOnRow = new Adw.EntryRow({ title: _("Background Image On"), });
         // Décoration
         backgroundImageOnRow.set_text(backgroundImageOn);
         // Connections
@@ -173,7 +172,6 @@ const screenpadPage = GObject.registerClass(class screenpadPage extends Adw.Pref
         backgroundImageOffRow.connect('changed', () => {
             this._settings.set_string('background-image-off', backgroundImageOffRow.get_text()); 
         } );
-
 
         // ____________________
         // Je garni les groupes
@@ -242,35 +240,35 @@ const screenpadPage = GObject.registerClass(class screenpadPage extends Adw.Pref
 const zenBookDuoRules = GObject.registerClass(class zenBookDuoRules extends Adw.PreferencesPage {
     _init() {
         super._init({
-             title: _("Minimum Requis"),
+             title: _("Requirements"),
             icon_name: 'preferences-other-symbolic',
         });
 
         // _______________________
-        // wmiTextPreferencesGroup
-        const wmiTextPreferencesGroup = new Adw.PreferencesGroup({
+        // minimumTextPreferencesGroup
+        const minimumTextPreferencesGroup = new Adw.PreferencesGroup({
         })
 
         // Row Minimum Requis
         const ModuleActionRow = new Adw.ActionRow({
-            title: _("Minimum Requis"),
+            title: _("Minimum Requirements"),
         })
         ModuleActionRow.subtitle = this._minimumRequierement();
 
         // Row udev/rules
         const RegleInitialActionRow = new Adw.ActionRow({
-            title: "udev/rules \n\n\t" + _("Lisez le fichier readme pour plus d'information"),
+            title: "udev/rules \n\n\t" + _("Read the readme file for more information"),
         })
         RegleInitialActionRow.subtitle = this._minimumRules();
 
         // ____________________
         // Je garni les groupes
-        wmiTextPreferencesGroup.add(ModuleActionRow);
-        wmiTextPreferencesGroup.add(RegleInitialActionRow);
+        minimumTextPreferencesGroup.add(ModuleActionRow);
+        minimumTextPreferencesGroup.add(RegleInitialActionRow);
 
         // _____________________
         // Je garni les fenetres
-        this.add(wmiTextPreferencesGroup);
+        this.add(minimumTextPreferencesGroup);
     }
 
 
@@ -284,12 +282,12 @@ const zenBookDuoRules = GObject.registerClass(class zenBookDuoRules extends Adw.
 
         const minimumRequierement =
             "\n"
-            + "<b>" + _("Cette extension nécessite :") + "</b>\n"
-            + "\t• " + _("Un noyau Linux ≥ 6.5") + "\n"
+            + "<b>" + _("This extension requires:") + "</b>\n"
+            + "\t• " + _("A Linux kernel ≥ 6.5") + "\n"
             + "\t• " + _(" GNOME Shell ≥ 45") + "\n\n"
-            + "<b>" + _("Vérifiez votre version avec :") + "</b>\n"
-            + "\t• uname -r " + _("pour le noyau") + "\n"
-            + "\t• gnome-shell --version " + _("pour GNOME")
+            + "<b>" + _("Check your version with:") + "</b>\n"
+            + "\t• uname -r " + _("for the kernel") + "\n"
+            + "\t• gnome-shell --version " + _("for GNOME")
             + "\n";
         return minimumRequierement;
     }
@@ -300,16 +298,16 @@ const zenBookDuoRules = GObject.registerClass(class zenBookDuoRules extends Adw.
 
         const minimumRules =
             "\n"
-            + "<b>" + _("Cette extension à besoin d'un accès en lecture et écriture à :") + "</b>\n"
+            + "<b>" + _("This extension needs read and write access to:") + "</b>\n"
             + "\t• /sys/class/backlight/asus_screenpad/brightness\n"
             + "\t• /sys/class/backlight/asus_screenpad/bl_power\n\n"
-            + "<b>" + _("Créez un fichier") + " /etc/udev/rules.d/99-asus.rules " + _("avec ce contenu :") + "</b>\n"
+            + "<b>" + _("Create a file") + " /etc/udev/rules.d/99-asus.rules " + _("with this content:") + "</b>\n"
             + "\t# Règles pour Asus ScreenPad\n"
             + "\tACTION==\"add\", SUBSYSTEM==\"backlight\", KERNEL==\"asus_screenpad\", \\\n"
             + "\t\tRUN+=\"/bin/chmod a+w /sys/class/backlight/asus_screenpad/brightness\"\n"
             + "\tACTION==\"add\", SUBSYSTEM==\"backlight\", KERNEL==\"asus_screenpad\", \\\n"
             + "\t\tRUN+=\"/bin/chmod a+w /sys/class/backlight/asus_screenpad/bl_power\"\n\n"
-            + "<b>" + _("Puis redémarrer la cession ou rechargez les règles avec :") + "</b>\n"
+            + "<b>" + _("Then restart your session or reload the rules with:") + "</b>\n"
             + "\tsudo udevadm control --reload-rules";
         return minimumRules
     }
@@ -322,7 +320,7 @@ const zenBookDuoRules = GObject.registerClass(class zenBookDuoRules extends Adw.
 const zenBookDuoAbout = GObject.registerClass(class zenBookDuoAbout extends Adw.PreferencesPage {
     _init(metadata, path) {
         super._init({
-             title: _("À propos"),
+             title: _("About"),
             icon_name: 'emoji-people-symbolic',
         });
 
@@ -354,7 +352,7 @@ const zenBookDuoAbout = GObject.registerClass(class zenBookDuoAbout extends Adw.
         });
 
         const AboutDescriptionLabel = new Gtk.Label({
-            label: _("Intégration des fonctions Asus au bureau Gnome") + "\n" + _("modele:") + " zenBook Duo",
+            label: _("Integration of screenpad functions into the Gnome desktop") ,
             vexpand: true,
             halign: Gtk.Align.START,
         });
@@ -377,17 +375,17 @@ const zenBookDuoAbout = GObject.registerClass(class zenBookDuoAbout extends Adw.
         const AboutTextPreferencesGroup = new Adw.PreferencesGroup()
 
         const AuteurActionRow = new Adw.ActionRow({
-            title: _("Auteur"),
+            title: _("This extension is not affiliated, funded,or in any way associated with Asus.\n\nAuthor"),
         })
         AuteurActionRow.subtitle = this._auteurText();
 
         const ProjetInitialActionRow = new Adw.ActionRow({
-            title: _("Projet initial"),
+            title: _("Initial project"),
         })
         ProjetInitialActionRow.subtitle = this._projetInitialText();
 
         const LicenceRow = new Adw.ActionRow({
-            title: 'Asus-WMI',
+            title: 'Licence',
         })
         LicenceRow.subtitle = this._licenceText();
 
@@ -399,7 +397,7 @@ const zenBookDuoAbout = GObject.registerClass(class zenBookDuoAbout extends Adw.
 
         //    _________________________
         //    AboutTextPreferencesGroup
-        const GarantieLabel = _("Ce logiciel est fourni sans AUCUNE GARANTIE.");
+        const GarantieLabel = _("This software is provided WITHOUT ANY WARRANTY.");
         const urlLabel =  _("Voir la %sLicence Publique Générale GNU%s pour plus de détails.")
             .format('<a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.fr.html">', '</a>');
 
@@ -424,9 +422,9 @@ const zenBookDuoAbout = GObject.registerClass(class zenBookDuoAbout extends Adw.
     _auteurText () {
 
         const auteurText =
-            _("Code écrit par") + " Christophe Théodore.\n"
-            + _("Avec l'aide de la communauté.")
-            + "\n\n" + _("Grand merci au développeurs, qui sans le savoir, m'ont permis d'obtenir ce résultat.")
+            _("Code written by") + " Christophe Théodore.\n"
+            + _("With help from the community.")
+            + "\n\n" + _("Many thanks to the developers, who unknowingly helped me achieve this result.")
             + "\n";
         return auteurText;
     }
@@ -435,9 +433,9 @@ const zenBookDuoAbout = GObject.registerClass(class zenBookDuoAbout extends Adw.
     // _projetInitial
     _projetInitialText () {
         const projetInitialText =
-            _("Une première version d'asus intégration avait été écrite par") + " jibsaramnim " + _("et") + " lunaneff.\n"
+            _("A first version of Asus integration was written by") + " jibsaramnim " + _("and") + " lunaneff.\n"
             + "https://github.com/lunaneff/gnome-shell-extension-zenbook-duo\n\n"
-            + _("Je me suis inspiré de l'idée pour créer cette extension, je remercie les auteurs.")
+            + _("I was inspired by the idea to create this extension, I thank the authors.")
             + "\n";
         return projetInitialText;
     }
@@ -446,16 +444,13 @@ const zenBookDuoAbout = GObject.registerClass(class zenBookDuoAbout extends Adw.
     // _licenceText
     _licenceText () {
         const licenceText =
-            _("Logiciel libre sous licence GPL-2.0+") + "\n\n"
-            + _("Vous êtes libre de:") + "\n"
-            + "\t• " + _("Utiliser, étudier, partager ce logiciel") + "\n"
-            + "\t• " + _("Le modifier selon vos besoins") +"\n"
-            + "\t• " + _("Redistribuer vos modifications");
+            _("Free software under the GPL-2.0+ license") + "\n\n"
+            + _("You are free to:") + "\n"
+            + "\t• " + _("Use, study, and share this software") + "\n"
+            + "\t• " + _("Modify it to suit your needs") +"\n"
+            + "\t• " + _("Redistribute your modifications");
         return licenceText;
     }
 
 });
 
-//-----------------------------------------------------------------------------
-//    La fin
-//-----------------------------------------------------------------------------
