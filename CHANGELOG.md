@@ -46,10 +46,3 @@ Cette version majeure introduit une refonte significative de la gestion des lect
 
 ## Version 1:
   - Version Initial, avant revue.
-
-```
-  //---------------------------------------------------------------------------
-  //    La fin
-  //---------------------------------------------------------------------------
-```
-
