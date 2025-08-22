@@ -34,7 +34,7 @@ Cette version majeure introduit une refonte significative de la gestion des lect
     *   **Correction de l'initialisation au démarrage :** Résolution d'un problème où l'état du ScreenPad (allumé/éteint) ou sa luminosité pouvaient être incorrects au démarrage de la session ou après un réveil de veille. La logique de synchronisation entre le matériel et les paramètres de l'extension a été entièrement repensée pour plus de fiabilité.
     *   Renforcement de la gestion des erreurs lors de l'accès aux fichiers système.
 
-*   ** Optimisations :**
+* ### Optimisations :
     *   Nettoyage du code et suppression de variables et de commentaires obsolètes.
     *   Amélioration de la stabilité générale et de la réactivité de l'interface.
 
