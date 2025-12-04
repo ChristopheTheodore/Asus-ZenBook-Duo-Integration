@@ -65,7 +65,7 @@ const screenpadPage = GObject.registerClass(class screenpadPage extends Adw.Pref
         // init
         super._init({
             title: _("Screenpad"),
-            icon_name: 'input-tablet-symbolic',
+            icon_name: 'display-symbolic',
         });
         this._settings = settings;
         this._path = path;
@@ -76,7 +76,6 @@ const screenpadPage = GObject.registerClass(class screenpadPage extends Adw.Pref
         this.giconFree = Gtk.Image.new_from_file(this._path + '/Media/input-tablet-symbolic-free-pref.svg');
         this.giconDesactivated = Gtk.Image.new_from_file(this._path + '/Media/input-tablet-symbolic-desactivated-pref.svg');
         this.gicon = this.giconDesactivated;
-
 
         // Création des trois groupes
         const ActiverPreferencesGroup = new Adw.PreferencesGroup({ title: _("Enable ScreenPad functions"), });
@@ -241,7 +240,7 @@ const zenBookDuoRules = GObject.registerClass(class zenBookDuoRules extends Adw.
     _init() {
         super._init({
              title: _("Requirements"),
-            icon_name: 'preferences-other-symbolic',
+            icon_name: 'info-symbolic',
         });
 
         // _______________________
@@ -284,7 +283,7 @@ const zenBookDuoRules = GObject.registerClass(class zenBookDuoRules extends Adw.
             "\n"
             + "<b>" + _("This extension requires:") + "</b>\n"
             + "\t• " + _("A Linux kernel ≥ 6.5") + "\n"
-            + "\t• " + _(" GNOME Shell ≥ 45") + "\n\n"
+            + "\t• " + _("GNOME Shell ≥ 45") + "\n\n"
             + "<b>" + _("Check your version with:") + "</b>\n"
             + "\t• uname -r " + _("for the kernel") + "\n"
             + "\t• gnome-shell --version " + _("for GNOME")
@@ -317,7 +316,7 @@ const zenBookDuoRules = GObject.registerClass(class zenBookDuoRules extends Adw.
 
 // _____________________
 // Class zenBookDuoAbout
-const zenBookDuoAbout = GObject.registerClass(class zenBookDuoAbout extends Adw.PreferencesPage {
+ const zenBookDuoAbout = GObject.registerClass(class zenBookDuoAbout extends Adw.PreferencesPage {
     _init(metadata, path) {
         super._init({
              title: _("About"),
@@ -375,7 +374,7 @@ const zenBookDuoAbout = GObject.registerClass(class zenBookDuoAbout extends Adw.
         const AboutTextPreferencesGroup = new Adw.PreferencesGroup()
 
         const AuteurActionRow = new Adw.ActionRow({
-            title: _("This extension is not affiliated, funded,or in any way associated with Asus.\n\nAuthor"),
+            title: _("This extension is not affiliated, funded,or in any way associated with Asus.") + "\n\n" + _("Author"),
         })
         AuteurActionRow.subtitle = this._auteurText();
 
@@ -417,15 +416,13 @@ const zenBookDuoAbout = GObject.registerClass(class zenBookDuoAbout extends Adw.
 //    Ici, je commence à traiter les texts
 // ----------------------------------------------------------------------------
 
-    // ___________
+ // ___________
     // _auteurText
     _auteurText () {
-
         const auteurText =
-            _("Code written by") + " Christophe Théodore.\n"
-            + _("With help from the community.")
-            + "\n\n" + _("Many thanks to the developers, who unknowingly helped me achieve this result.")
-            + "\n";
+            _("Code written by") + " Christophe Théodore:\t(mission_theodore@hotmail.com)\n"
+            + _("With help from the community.") +"\n\n"
+            + _("Many thanks to the developers, who unknowingly helped me achieve this result.");
         return auteurText;
     }
 

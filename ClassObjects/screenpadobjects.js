@@ -88,7 +88,7 @@ export class screenpadControl {
         this._screenpadSliderIndicator.quickSettingsItems.push(this._screenpadSlider);
 
         Main.panel.statusArea.quickSettings.addExternalIndicator(this._screenpadSliderIndicator, 2);
-        Main.panel.statusArea.quickSettings.menu._grid.set_child_above_sibling(this._screenpadSlider.actor, this.mainSlider);
+        Main.panel.statusArea.quickSettings.menu._grid.set_child_above_sibling(this._screenpadSlider, this.mainSlider);
 
         //    Creation du toggle _screenpadToggleMenu
         this._screenpadToggleMenuIndicator = new QuickSettings.SystemIndicator();

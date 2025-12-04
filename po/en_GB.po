@@ -1,0 +1,250 @@
+# English translations for Asus ZenBook Duo Integration.
+# Copyright (C) 2025 Christophe Theodore
+# This file is distributed under the same license as the zenbookduointegration package.
+# Christophe Theodore <your.email@address.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: zenbookduointegration\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-04 11:56+0300\n"
+"PO-Revision-Date: 2025-12-04 11:59+0300\n"
+"Last-Translator: Christophe Theodore <your.email@address.com>\n"
+"Language-Team: English <en@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.8\n"
+
+#: ../extension.js:93 ../extension.js:104 ../extension.js:117
+msgid "ZenBook Extension deactivation"
+msgstr "ZenBook Extension Deactivation"
+
+#: ../extension.js:94
+msgid "The main control panel is not accessible."
+msgstr "The main control panel is not accessible."
+
+#: ../extension.js:105 ../extension.js:118
+msgid "A file"
+msgstr "A file"
+
+#: ../extension.js:107
+msgid "was not detected. A kernel newer than 6.5 is required."
+msgstr "was not detected. A kernel newer than 6.5 is required."
+
+#: ../extension.js:120
+msgid "is read-only. See the preferences to configure"
+msgstr "is read-only. See the preferences to configure"
+
+#: ../extension.js:317
+msgid "Preferences"
+msgstr "Preferences"
+
+#: ../prefs.js:67
+msgid "Screenpad"
+msgstr "ScreenPad"
+
+#: ../prefs.js:81
+msgid "Enable ScreenPad functions"
+msgstr "Enable ScreenPad functions"
+
+#: ../prefs.js:82
+msgid "View Settings"
+msgstr "View Settings"
+
+#: ../prefs.js:83
+msgid "Manage Backgrounds"
+msgstr "Manage Backgrounds"
+
+#: ../prefs.js:90
+msgid "Enable ScreenPad sliders"
+msgstr "Enable ScreenPad sliders"
+
+#: ../prefs.js:108
+msgid "If off, turn on the ScreenPad at startup"
+msgstr "If off, turn on the ScreenPad at startup"
+
+#: ../prefs.js:136
+msgid "Enable background effects"
+msgstr "Enable background effects"
+
+#: ../prefs.js:137
+msgid "ScreenPad functions must be active"
+msgstr "ScreenPad functions must be active"
+
+#: ../prefs.js:156
+msgid "Background Image On"
+msgstr "Background Image On"
+
+#: ../prefs.js:167
+msgid "Background Image Off"
+msgstr "Background Image Off"
+
+#: ../prefs.js:242
+msgid "Requirements"
+msgstr "Requirements"
+
+#: ../prefs.js:253
+msgid "Minimum Requirements"
+msgstr "Minimum Requirements"
+
+#: ../prefs.js:259
+msgid "Read the readme file for more information"
+msgstr "Read the readme file for more information"
+
+#: ../prefs.js:284
+msgid "This extension requires:"
+msgstr "This extension requires:"
+
+#: ../prefs.js:285
+msgid "A Linux kernel ≥ 6.5"
+msgstr "A Linux kernel ≥ 6.5"
+
+#: ../prefs.js:286
+msgid "GNOME Shell ≥ 45"
+msgstr "GNOME Shell ≥ 45"
+
+#: ../prefs.js:287
+msgid "Check your version with:"
+msgstr "Check your version with:"
+
+#: ../prefs.js:288
+msgid "for the kernel"
+msgstr "for the kernel"
+
+#: ../prefs.js:289
+msgid "for GNOME"
+msgstr "for GNOME"
+
+#: ../prefs.js:300
+msgid "This extension needs read and write access to:"
+msgstr "This extension needs read and write access to:"
+
+#: ../prefs.js:303
+msgid "Create a file"
+msgstr "Create a file"
+
+#: ../prefs.js:303
+msgid "with this content:"
+msgstr "with this content:"
+
+#: ../prefs.js:309
+msgid "Then restart your session or reload the rules with:"
+msgstr "Then restart your session or reload the rules with:"
+
+#: ../prefs.js:322
+msgid "About"
+msgstr "About"
+
+#: ../prefs.js:354
+msgid "Integration of screenpad functions into the Gnome desktop"
+msgstr "Integration of screenpad functions into the Gnome desktop"
+
+#: ../prefs.js:377
+msgid "This extension is not affiliated, funded,or in any way associated with Asus."
+msgstr "This extension is not affiliated, funded, or in any way associated with Asus."
+
+#: ../prefs.js:377
+msgid "Author"
+msgstr "Author"
+
+#: ../prefs.js:385
+msgid "Initial project"
+msgstr "Initial project"
+
+#: ../prefs.js:402
+msgid "This software is provided WITHOUT ANY WARRANTY."
+msgstr "This software is provided WITHOUT ANY WARRANTY."
+
+#: ../prefs.js:403
+#, javascript-format
+msgid "Voir la %sLicence Publique Générale GNU%s pour plus de détails."
+msgstr "See the %sGNU General Public License%s for more details."
+
+#: ../prefs.js:426
+msgid "Code written by"
+msgstr "Code written by"
+
+#: ../prefs.js:427
+msgid "With help from the community."
+msgstr "With help from the community."
+
+#: ../prefs.js:428
+msgid "Many thanks to the developers, who unknowingly helped me achieve this result."
+msgstr "Many thanks to the developers, who unknowingly helped me achieve this result."
+
+#: ../prefs.js:436
+msgid "A first version of Asus integration was written by"
+msgstr "A first version of Asus integration was written by"
+
+#: ../prefs.js:436
+msgid "and"
+msgstr "and"
+
+#: ../prefs.js:438
+msgid "I was inspired by the idea to create this extension, I thank the authors."
+msgstr "I was inspired by the idea to create this extension, I thank the authors."
+
+#: ../prefs.js:447
+msgid "Free software under the GPL-2.0+ license"
+msgstr "Free software under the GPL-2.0+ license"
+
+#: ../prefs.js:448
+msgid "You are free to:"
+msgstr "You are free to:"
+
+#: ../prefs.js:449
+msgid "Use, study, and share this software"
+msgstr "Use, study, and share this software"
+
+#: ../prefs.js:450
+msgid "Modify it to suit your needs"
+msgstr "Modify it to suit your needs"
+
+#: ../prefs.js:451
+msgid "Redistribute your modifications"
+msgstr "Redistribute your modifications"
+
+#~ msgid "Icon Accessible Name"
+#~ msgstr "Icon Accessible Name"
+
+#~ msgid "ScreenPad-Slider"
+#~ msgstr "ScreenPad-Slider"
+
+#~ msgid "Linked"
+#~ msgstr "Linked"
+
+#~ msgid "ScreenPad linked"
+#~ msgstr "ScreenPad linked"
+
+#~ msgid "ScreenPad"
+#~ msgstr "ScreenPad"
+
+#~ msgid "ScreenPad Status"
+#~ msgstr "ScreenPad Status"
+
+#~ msgid "ScreenPad Linked"
+#~ msgstr "ScreenPad Linked"
+
+#~ msgid "ScreenPad Free"
+#~ msgstr "ScreenPad Free"
+
+#~ msgid "ScreenPad Full"
+#~ msgstr "ScreenPad Full"
+
+#~ msgid "ScreenPad Off"
+#~ msgstr "ScreenPad Off"
+
+#~ msgid "Error in ScreenPad Extension"
+#~ msgstr "Error in ScreenPad Extension"
+
+#~ msgid "One of the files"
+#~ msgstr "One of the files"
+
+#~ msgid "is not accessible"
+#~ msgstr "is not accessible"
+
+#~ msgid "is not open"
+#~ msgstr "is not open"

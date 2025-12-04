@@ -212,7 +212,7 @@ export default class ZenBookDuoIntegration extends Extension {
                 switch (screenpadMode) {
 
                     case "Linked":
-                        newScreenPadBrightnessValue = mainBrightnessValue;
+                        newScreenPadBrightnessValue = Math.round(mainBrightnessValue /255*235);
                     break;
 
                     case "Free":
@@ -232,7 +232,7 @@ export default class ZenBookDuoIntegration extends Extension {
                                 functionResult = systemFileUtility.setSysClassFileValue(SysClassBLPowerFile,"0");
                                 if (functionResult === "ok") {
                                     this._settings.set_boolean('screenpad-status', true);
-                                    newScreenPadBrightnessValue = mainBrightnessValue;
+                                    newScreenPadBrightnessValue = Math.round(mainBrightnessValue /255*235);
                                     sysClassScreenPadBLPowerValue = 0;
                                     this._settings.set_string('screenpad-mode', "Free");
                                 }
@@ -260,7 +260,7 @@ export default class ZenBookDuoIntegration extends Extension {
                             // La fonction autoAjustement est elle true?
                             if(screenpadAutoAdjustValue) {
                                 // Auto ajustement de l'écran, mise en mode Free
-                                newScreenPadBrightnessValue = mainBrightnessValue;
+                                newScreenPadBrightnessValue = Math.round(mainBrightnessValue /255*235);
                                 this._settings.set_string('screenpad-mode', "Free");
                             }
                         // Cas 2 : l'écran n'était pas Full
@@ -275,8 +275,8 @@ export default class ZenBookDuoIntegration extends Extension {
                 }
 
                 // Mise a jour de screenpad-brightness et écriture dans le /sys/.../brightness
-                this._settings.set_int('screenpad-brightness', newScreenPadBrightnessValue);
-                functionResult = systemFileUtility.setSysClassFileValue(SysClassBrightnessFile, Math.round(newScreenPadBrightnessValue*235/100));
+                this._settings.set_int('screenpad-brightness', Math.round(newScreenPadBrightnessValue/235*100));
+                functionResult = systemFileUtility.setSysClassFileValue(SysClassBrightnessFile, Math.round(newScreenPadBrightnessValue));
 
                 // puis, sauvegarde de l'état actuelle sauf si off
                 if ( this._settings.get_string('screenpad-mode') != "Off")
