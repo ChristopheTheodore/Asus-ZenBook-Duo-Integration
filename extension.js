@@ -21,6 +21,7 @@
 
 // import
 import Gio from 'gi://Gio';
+import GLib from 'gi://GLib';
 
 import {Extension, gettext as _} from 'resource:///org/gnome/shell/extensions/extension.js';
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
@@ -42,6 +43,24 @@ let firstRun = true;
 export default class ZenBookDuoIntegration extends Extension {
 
     enable() {
+        // GNOME 50 : les indicateurs Quick Settings sont créés de façon asynchrone,
+        // _brightness peut ne pas encore exister au démarrage -> on attend.
+        if (Main.panel.statusArea.quickSettings._brightness?.quickSettingsItems?.[0]) {
+            this._enable();
+            return;
+        }
+        let tries = 0;
+        this._waitBrightnessId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, () => {
+            if (Main.panel.statusArea.quickSettings._brightness?.quickSettingsItems?.[0] || ++tries >= 100) {
+                this._waitBrightnessId = null;
+                this._enable();
+                return GLib.SOURCE_REMOVE;
+            }
+            return GLib.SOURCE_CONTINUE;
+        });
+    }
+
+    _enable() {
 
         // Le setting
         this._settings = this.getSettings(GSettingsPaths.SETTINGS);
@@ -60,7 +79,7 @@ export default class ZenBookDuoIntegration extends Extension {
         this._screenpadActivatedId = null;
 
         // et pour se simplifier la vie
-        this.mainSlider = Main.panel.statusArea.quickSettings._brightness.quickSettingsItems[0];
+        this.mainSlider = Main.panel.statusArea.quickSettings._brightness?.quickSettingsItems?.[0];
 
         //    Test RW des /sys/class files
         //    Vérifions cela, mais qu'une seule fois, au premier démarrage ! 
@@ -165,6 +184,11 @@ export default class ZenBookDuoIntegration extends Extension {
     }
 
     disable() {
+
+        if (this._waitBrightnessId) {
+            GLib.source_remove(this._waitBrightnessId);
+            this._waitBrightnessId = null;
+        }
 
         // Destructions des connexions
         if (this._screenpadActivatedId) {

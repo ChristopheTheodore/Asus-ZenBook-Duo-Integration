@@ -13,6 +13,12 @@ Le réglage de la luminosité du ScreenPad se controle en fonction du mode chois
 
 Les fonds d'écran peuvent s'adapter à la demande.
 
+## Version 6.0: GNOME 50
+
+* ### Améliorations :
+    *   Intégration à Gnome50
+    *   Correction de "settings-schema" dans metadata.json
+
 ## Version 5.0: actor - initialisation
 
 * ### Améliorations :

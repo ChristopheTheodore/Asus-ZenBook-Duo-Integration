@@ -3,9 +3,9 @@
   "description": "Integration of screenpad functions into the Gnome desktop.\n This extension is not affiliated, funded, or in any way associated with Asus.",
   "gettext-domain": "asuszenbookduointegration",
   "uuid": "asuszenbookduointegration@ChristopheTheodore.extension",
-  "shell-version": ["45", "46", "47", "48", "49"],
+  "shell-version": ["45", "46", "47", "48", "49", "50"],
   "url": "https://github.com/ChristopheTheodore/Asus-ZenBook-Duo-Integration.git",
-  "version": 5,
-  "settings-schema": "org.gnome.shell.zen-book-duo-integration",
+  "version": 6,
+  "settings-schema": "org.gnome.shell.extensions.zen-book-duo-integration",
   "license": "GPL-2.0"
 }
